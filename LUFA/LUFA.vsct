@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+  <!--Definition of some VSCT specific constants. In this sample we use it for the IDs inside the guidOfficeIcon group. -->
+  <Extern href="msobtnid.h"/>
+
+
+  <Commands package="guidLUFAPkg">
+    <Groups>
+      <Group guid="guidLUFACmdSet" id="grpLUFAHelp" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_HELP"/>
+      </Group>
+
+      <Group guid="guidLUFACmdSet" id="grpLUFAHelpItems" priority="0x0000">
+        <Parent guid="guidLUFACmdSet" id="mnuLUFAHelp"/>
+      </Group>
+    </Groups>
+
+    <Menus>
+      <Menu guid="guidLUFACmdSet" id="mnuLUFAHelp" type="Menu" priority="0x0000">
+        <Parent guid="guidLUFACmdSet" id="grpLUFAHelp"/>
+        <Strings>
+          <CommandName>LUFA Help</CommandName>
+          <ButtonText>LUFA Help</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <Buttons>
+      <Button guid="guidLUFACmdSet" id="btnGettingStarted" priority="0x0001" type="Button">
+        <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
+        <Icon guid="guidImgLUFA" id="imgLUFA"/>
+        <Strings>
+          <CommandName>Getting Started</CommandName>
+          <ButtonText>Getting Started</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidLUFACmdSet" id="btnProjectPage" priority="0x0002" type="Button">
+        <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
+        <Icon guid="guidImgInternet" id="imgInternet"/>
+        <Strings>
+          <CommandName>LUFA Project Page</CommandName>
+          <ButtonText>LUFA Project Page</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidLUFACmdSet" id="btnMailingList" priority="0x0003" type="Button">
+        <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
+        <Icon guid="guidImgInternet" id="imgInternet"/>
+        <Strings>
+          <CommandName>LUFA Support List</CommandName>
+          <ButtonText>LUFA Support List</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidLUFACmdSet" id="btnDocumentation" priority="0x0004" type="Button">
+        <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
+        <Icon guid="guidImgInternet" id="imgInternet"/>
+        <Strings>
+          <CommandName>LUFA Online Documentation</CommandName>
+          <ButtonText>LUFA Online Documentation</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidLUFACmdSet" id="btnReinstallLocalHelp" priority="0x0005" type="Button">
+        <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
+        <Icon guid="guidImgHelp" id="imgHelp"/>
+        <Strings>
+          <CommandName>Reinstall Local Help</CommandName>
+          <ButtonText>Reinstall Local Help</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <Bitmaps>
+      <Bitmap guid="guidImgLUFA" href="Resources\LUFAToolbarIcon.png" usedList="imgLUFA"/>
+      <Bitmap guid="guidImgInternet" href="Resources\InternetToolbarIcon.bmp" usedList="imgInternet"/>
+      <Bitmap guid="guidImgHelp" href="Resources\HelpToolbarIcon.bmp" usedList="imgHelp"/>
+    </Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidLUFAPkg" value="{2cfcbce0-84cb-45dc-8315-cad3f82b9467}"/>
+    
+    <GuidSymbol name="guidImgLUFA" value="{ab9746a4-a16c-4b0d-bc11-1938f5c4b7c5}">
+      <IDSymbol name="imgLUFA" value="1"/>
+    </GuidSymbol>
+    
+    <GuidSymbol name="guidImgInternet" value="{0c5fd15d-374c-45c4-8fc9-22ff149225ac}">
+      <IDSymbol name="imgInternet" value="1"/>
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImgHelp" value="{a5ce73be-7df8-42d6-a1c2-8ffd96038fbc}">
+      <IDSymbol name="imgHelp" value="1"/>
+    </GuidSymbol>
+    
+    <GuidSymbol name="guidLUFACmdSet" value="{1f3dc770-b782-4cfd-b11a-b9065cdc6e70}">
+      <IDSymbol name="mnuLUFAHelp" value="0x0100"/>
+
+      <IDSymbol name="grpLUFAHelp" value="0x0101"/>
+      <IDSymbol name="grpLUFAHelpItems" value="0x0102"/>
+
+      <IDSymbol name="btnGettingStarted" value="0x0103"/>
+      <IDSymbol name="btnProjectPage" value="0x0104"/>
+      <IDSymbol name="btnMailingList" value="0x0105"/>
+      <IDSymbol name="btnDocumentation" value="0x0106"/>
+      <IDSymbol name="btnReinstallLocalHelp" value="0x0107"/>
+    </GuidSymbol>
+  </Symbols>
+
+</CommandTable>
