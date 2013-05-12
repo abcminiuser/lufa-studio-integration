@@ -6,6 +6,7 @@ using Atmel.Studio.Services;
 using EnvDTE;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
+using System.Diagnostics;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -17,10 +18,11 @@ namespace FourWalledCubicle.LUFA
         internal static class CommandIDs
         {
             public const int btnGettingStarted = 0x0103;
-            public const int btnProjectPage = 0x0104;
-            public const int btnMailingList = 0x0105;
-            public const int btnDocumentation = 0x0106;
-            public const int btnReinstallLocalHelp = 0x0107;
+            public const int btnShowLocalHelp = 0x0104;
+            public const int btnProjectPage = 0x0105;
+            public const int btnMailingList = 0x0106;
+            public const int btnDocumentation = 0x0107;
+            public const int btnReinstallLocalHelp = 0x0108;
         }
 
         public HelpToolbarEntries(DTE dte, OleMenuCommandService menuService)
@@ -31,6 +33,11 @@ namespace FourWalledCubicle.LUFA
             AddToolbarButtonHandler(
                     CommandIDs.btnGettingStarted,
                     (c, a) => { ShowGettingStarted(); }
+                );
+
+            AddToolbarButtonHandler(
+                    CommandIDs.btnShowLocalHelp,
+                    (c, a) => { ShowLocalHelp(); }
                 );
 
             AddToolbarButtonHandler(
@@ -91,7 +98,16 @@ namespace FourWalledCubicle.LUFA
             }
         }
 
-        public void ReinstallLocalHelp()
+        private void ShowLocalHelp()
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(@"ms-xhelp://?method=page&id=LUFALUFA&product=ATMELStudio&productVersion=6.1");
+            }
+            catch { }
+        }
+
+        private void ReinstallLocalHelp()
         {
             HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.REINSTALL_HELP);
         }
