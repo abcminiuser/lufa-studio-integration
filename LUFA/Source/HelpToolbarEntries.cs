@@ -2,11 +2,10 @@
 using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
-using Atmel.Studio.Services;
+using System.Windows.Forms;
 using EnvDTE;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
-using System.Diagnostics;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -88,13 +87,7 @@ namespace FourWalledCubicle.LUFA
             }
             else
             {
-                IDialogService dialogService = ATServiceProvider.DialogService;
-                if (dialogService == null)
-                    return;
-
-                dialogService.ShowDialog(null,
-                    "Could not find LUFA Getting Started guide.", "LUFA Library",
-                    DialogButtonSet.Ok, DialogIcon.Error);
+                MessageBox.Show("Could not find LUFA Getting Started guide.", "LUFA Library", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

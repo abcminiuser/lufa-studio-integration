@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Atmel.Studio.Services;
+using System.Windows.Forms;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.Win32;
@@ -71,17 +71,13 @@ namespace FourWalledCubicle.LUFA
 
         private static void ShowHelpInstallMessage()
         {
-            IDialogService dialogService = ATServiceProvider.DialogService;
-            if (dialogService == null)
-                return;
-
-            dialogService.ShowDialog(null,
+            MessageBox.Show(
                 @"LUFA contains an integrated Atmel Studio help package, however it is unsigned and must be manually installed." +
                 Environment.NewLine + Environment.NewLine +
                 @"If you wish to install the LUFA help package click the ""Add"" link next to the LUFA entry in the Microsoft " +
                 @"Help Manager Wizard that will show when this box is closed, click the ""Update"" button and follow the wizard prompts.",
-                "LUFA Library",
-                DialogButtonSet.Continue, DialogIcon.Information);
+                @"LUFA Library",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static void DoHelpAction(HelpAction action)

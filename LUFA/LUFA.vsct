@@ -55,8 +55,8 @@
         <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
         <Icon guid="guidImgInternet" id="imgInternet"/>
         <Strings>
-          <CommandName>LUFA Project Page</CommandName>
-          <ButtonText>LUFA Project Page</ButtonText>
+          <CommandName>Project Page</CommandName>
+          <ButtonText>Project Page</ButtonText>
         </Strings>
       </Button>
 
@@ -64,8 +64,8 @@
         <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
         <Icon guid="guidImgInternet" id="imgInternet"/>
         <Strings>
-          <CommandName>LUFA Support List</CommandName>
-          <ButtonText>LUFA Support List</ButtonText>
+          <CommandName>Support List</CommandName>
+          <ButtonText>Support List</ButtonText>
         </Strings>
       </Button>
 
@@ -73,8 +73,8 @@
         <Parent guid="guidLUFACmdSet" id="grpLUFAHelpItems"/>
         <Icon guid="guidImgInternet" id="imgInternet"/>
         <Strings>
-          <CommandName>LUFA Online Documentation</CommandName>
-          <ButtonText>LUFA Online Documentation</ButtonText>
+          <CommandName>Online Documentation</CommandName>
+          <ButtonText>Online Documentation</ButtonText>
         </Strings>
       </Button>
 
