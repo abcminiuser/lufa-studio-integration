@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using EnvDTE;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.VSHelp;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -93,11 +94,9 @@ namespace FourWalledCubicle.LUFA
 
         private void ShowLocalHelp()
         {
-            try
-            {
-                System.Diagnostics.Process.Start(@"ms-xhelp://?method=page&id=LUFALUFA&product=ATMELStudio&productVersion=6.1");
-            }
-            catch { }
+            Microsoft.VisualStudio.VSHelp.Help helpService = Package.GetGlobalService(typeof(SVsHelp)) as Microsoft.VisualStudio.VSHelp.Help;
+
+            helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
         }
 
         private void ReinstallLocalHelp()
