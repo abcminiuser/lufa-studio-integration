@@ -87,7 +87,7 @@ namespace FourWalledCubicle.LUFA
             }
             else
             {
-                MessageBox.Show("Could not find LUFA Getting Started guide.", "LUFA Library", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(new ModalDialogHandle(), "Could not find LUFA Getting Started guide.", "LUFA Library", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

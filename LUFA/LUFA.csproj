@@ -127,6 +127,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\ModalDialogHandle.cs" />
     <Compile Include="Source\EasterEgg.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Source\HelpInstallManager.cs" />
