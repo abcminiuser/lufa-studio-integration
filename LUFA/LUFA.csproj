@@ -132,6 +132,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\GettingStartedPageToolWindow.cs" />
+    <Compile Include="Source\GettingStarted.xaml.cs">
+      <DependentUpon>GettingStarted.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Source\ModalDialogHandle.cs" />
     <Compile Include="Source\EasterEgg.cs" />
     <Compile Include="Guids.cs" />
@@ -177,9 +181,19 @@
   <ItemGroup>
     <Resource Include="Resources\InternetToolbarIcon.bmp" />
     <Resource Include="Resources\HelpToolbarIcon.bmp" />
+    <Resource Include="Resources\ASFExplorer.png" />
+    <Resource Include="Resources\ASFWizard.png" />
+    <Resource Include="Resources\LUFAHelpMenu.png" />
+    <Resource Include="Resources\NewExampleWizard.png" />
     <Content Include="Resources\Package.ico" />
     <Resource Include="Resources\LUFAToolbarIcon.png" />
     <None Include="Resources\ys.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Source\GettingStarted.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:CompileXaml</Generator>
+    </Page>
   </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>

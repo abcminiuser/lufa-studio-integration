@@ -5,6 +5,7 @@ using Atmel.Studio.Services;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using VSHelp = Microsoft.VisualStudio.VSHelp;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -12,6 +13,7 @@ namespace FourWalledCubicle.LUFA
     [Guid(GuidList.guidLUFAPkgString)]
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     [ProvideOptionPageAttribute(typeof(OptionsPage), "Extensions", "LUFA Library", 15600, 1912, true)]
+    [ProvideToolWindow(typeof(GettingStartedPageToolWindow), Style = VsDockStyle.MDI, Window = "C02047B1-FD51-456B-95D1-6FF77A2A1894", MultiInstances = false)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class LUFAPackage : AtmelVsixPackage
     {
@@ -61,8 +63,9 @@ namespace FourWalledCubicle.LUFA
             }
 
             OleMenuCommandService menuService = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            VSHelp.Help helpService = GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
 
-            mHelpLinks = new HelpToolbarEntries(mDTE, menuService);
+            mHelpLinks = new HelpToolbarEntries(mDTE, menuService, helpService, this);
             mEasterEgg = new EasterEgg(mDTE, settings);
         }
 
@@ -70,9 +73,21 @@ namespace FourWalledCubicle.LUFA
         {
             if (isFirstRun)
             {
-                mHelpLinks.ShowGettingStarted();
+                ShowGettingStartedPage();
 
                 HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.INSTALL_HELP);
+            }
+        }
+
+        public void ShowGettingStartedPage()
+        {
+            GettingStartedPageToolWindow gettingStartedWindow =
+                (FindToolWindow(typeof(GettingStartedPageToolWindow), 0, true) as GettingStartedPageToolWindow);
+
+            if ((gettingStartedWindow != null) && (gettingStartedWindow.Frame != null))
+            {
+                ((IVsWindowFrame)gettingStartedWindow.Frame).Show();
+                gettingStartedWindow.ResetScrollPosition();
             }
         }
     }

@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="FourWalledCubicle.LUFA.Pages.GettingStarted"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="2800" d:DesignWidth="1200" Background="#FF353535" BorderThickness="1" BorderBrush="#D3CAC1">
+
+    <UserControl.Resources>
+        <Style x:Key="SectionHeading" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="10,40,0,0" />
+        </Style>
+
+        <Style x:Key="SectionText" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Georgia" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Padding" Value="20,10,20,10" />
+        </Style>
+    </UserControl.Resources>
+    
+    <ScrollViewer Name="PageScroller">
+        <Border MaxWidth="950" Margin="20" BorderThickness="1" BorderBrush="#D3CAC1">
+            <DockPanel Background="#EAE0D6">
+                <!-- Header -->
+                <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Times New Roman" FontSize="38" FontWeight="Bold" Background="#3D3229" Foreground="#CCB" Padding="10">
+                    Thanks for trying <Run Foreground="#998">LUFA</Run>
+                </TextBlock>
+
+                <!-- Installed Text -->
+                <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Georgia" FontSize="18" FontStyle="Italic" Margin="0,40,0,00">
+                    The LUFA extension is now installed and ready for use.
+                </TextBlock>
+
+                <!-- Create an Example Project -->
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionHeading}">
+                    Create an Example Project
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                    LUFA comes with a variety of example projects, showing off several of the library features. Also included is a number of bootloaders,
+                    full LUFA powered projects, and several user-contributed projects. To see these, open the New Example Project wizard from the
+                    <Run FontFamily="Consolas">File→New</Run> menu. Expand out the <Run FontStyle="Italic">FourWalledCubicle</Run> node, then the
+                    <Run FontStyle="Italic">Dean Camera - LUFA</Run> node to see a list of LUFA projects.
+                </TextBlock>
+                <Image DockPanel.Dock="Top" Stretch="UniformToFill" MaxWidth="950" Margin="20,0,20,0">
+                    <Image.Source>
+                        <BitmapImage UriSource="/LUFA;component/Resources/NewExampleWizard.png"/>
+                    </Image.Source>
+                </Image>
+
+                <!-- Configure LUFA -->
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionHeading}">
+                    Configure LUFA
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                    The LUFA Atmel Studio extension is fully integrated into the Atmel Studio IDE, including the LUFA sub-modules. Open the ASF Wizard
+                    from the <Run FontFamily="Consolas">ASF→ASF</Run> Wizard menu, choose your project from your current solution, then choose the LUFA
+                    library as the extension to configure from the Available Modules portion of the wizard. Here you can add and remove LUFA modules to
+                    and from your project as you need them.
+                </TextBlock>
+                <Image DockPanel.Dock="Top" Stretch="UniformToFill" MaxWidth="825" Margin="20,0,20,0">
+                    <Image.Source>
+                        <BitmapImage UriSource="/LUFA;component/Resources/ASFWizard.png"/>
+                    </Image.Source>
+                </Image>
+
+                <!-- Find the Module APIs -->
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionHeading}">
+                    Find the Module APIs
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                    You can view your project's included LUFA modules any time you need to from the ASF Explorer window, accessible from the
+                    <Run FontFamily="Consolas">ASF→ASF</Run> Explorer menu. Here you can find a link to the module's corresponding API documentation in
+                    the LUFA manual, as well as a direct link to the module's API header.
+                </TextBlock>
+                <Image DockPanel.Dock="Top" Stretch="UniformToFill" MaxWidth="296" Margin="20,0,20,0">
+                    <Image.Source>
+                        <BitmapImage UriSource="/LUFA;component/Resources/ASFExplorer.png"/>
+                    </Image.Source>
+                </Image>
+
+                <!-- Get Help -->
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionHeading}">
+                    Get Help
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                    If you installed the integrated help package, you can view the LUFA manual from the <Run FontFamily="Consolas">Help→View</Run> Help menu,
+                    or just jump directly to the relevant documentation for a function, variable, type or other LUFA symbol in your code by first selecting it
+                    and pressing the <Run FontFamily="Consolas">F1</Run> key. If the integrated Help package fails to install, you can re-try from the
+                    <Run FontFamily="Consolas">Help→LUFA Help→Reinstall</Run> Local Help menu entry.
+                </TextBlock>
+                <Image DockPanel.Dock="Top" Stretch="Uniform" MaxHeight="300" Margin="20,0,20,0">
+                    <Image.Source>
+                        <BitmapImage UriSource="/LUFA;component/Resources/LUFAHelpMenu.png"/>
+                    </Image.Source>
+                </Image>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                    The latest LUFA manual is also available for viewing online, if you do not wish to use the integrated help.
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                    If you are still stuck and need help, please post on the <Hyperlink Click="LUFAMailingList_Click">LUFA Mailing List</Hyperlink> - or just search the mailing list
+                    archives to see if your question has already been answered.
+                </TextBlock>
+
+                <!-- Read About the Latest Developments -->
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionHeading}">
+                    Read About the Latest Developments
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                    Keep up to date with the latest LUFA news; read the <Hyperlink Click="AuthorBlog_Click">author's blog</Hyperlink>, or see the
+                    <Hyperlink Click="AuthorWebsite_Click">author's website</Hyperlink>.
+                </TextBlock>
+
+                <!-- Footer -->
+                <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#353535" FontStyle="Italic" Foreground="#CCB" Padding="0,20,0,20">
+                    LUFA - the Lightweight USB Framework for AVRs
+                </TextBlock>
+            </DockPanel>
+        </Border>
+    </ScrollViewer>
+</UserControl>

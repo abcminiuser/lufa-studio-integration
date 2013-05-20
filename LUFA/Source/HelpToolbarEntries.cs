@@ -4,9 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using EnvDTE;
-using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.VSHelp;
+using VSHelp = Microsoft.VisualStudio.VSHelp;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -14,6 +13,8 @@ namespace FourWalledCubicle.LUFA
     {
         private readonly DTE mDTE;
         private readonly OleMenuCommandService mMenuService;
+        private readonly VSHelp.Help mHelpService;
+        private readonly LUFAPackage mLUFAPkg;
 
         internal static class CommandIDs
         {
@@ -25,19 +26,21 @@ namespace FourWalledCubicle.LUFA
             public const int btnReinstallLocalHelp = 0x0108;
         }
 
-        public HelpToolbarEntries(DTE dte, OleMenuCommandService menuService)
+        public HelpToolbarEntries(DTE dte, OleMenuCommandService menuService, VSHelp.Help helpService, LUFAPackage LUFAPkg)
         {
             mDTE = dte;
             mMenuService = menuService;
+            mHelpService = helpService;
+            mLUFAPkg = LUFAPkg;
 
             AddToolbarButtonHandler(
                     CommandIDs.btnGettingStarted,
-                    (c, a) => { ShowGettingStarted(); }
+                    (c, a) => { mLUFAPkg.ShowGettingStartedPage(); }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnShowLocalHelp,
-                    (c, a) => { ShowLocalHelp(); }
+                    (c, a) => { mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index"); }
                 );
 
             AddToolbarButtonHandler(
@@ -57,8 +60,8 @@ namespace FourWalledCubicle.LUFA
 
             AddToolbarButtonHandler(
                     CommandIDs.btnReinstallLocalHelp,
-                    (c, a) => { ReinstallLocalHelp(); }
-                );        
+                    (c, a) => { HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.REINSTALL_HELP); }
+                );
         }
 
         private void AddToolbarButtonHandler(int commandID, EventHandler callback)
@@ -72,36 +75,6 @@ namespace FourWalledCubicle.LUFA
                 return;
 
             mMenuService.AddCommand(btnMenuCommand);
-        }
-
-        public void ShowGettingStarted()
-        {
-            IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
-            if (extensionManagerService == null)
-                return;
-
-            string gettingStartedPath = extensionManagerService.GetEnabledExtensionContentLocations("GettingStarted").FirstOrDefault();
-
-            if (File.Exists(gettingStartedPath))
-            {
-                mDTE.ItemOperations.Navigate(@"file:///" + gettingStartedPath, vsNavigateOptions.vsNavigateOptionsNewWindow);
-            }
-            else
-            {
-                MessageBox.Show(new ModalDialogHandle(), "Could not find LUFA Getting Started guide.", "LUFA Library", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ShowLocalHelp()
-        {
-            Microsoft.VisualStudio.VSHelp.Help helpService = Package.GetGlobalService(typeof(SVsHelp)) as Microsoft.VisualStudio.VSHelp.Help;
-
-            helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
-        }
-
-        private void ReinstallLocalHelp()
-        {
-            HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.REINSTALL_HELP);
         }
     }
 }
