@@ -20,11 +20,15 @@
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="Padding" Value="20,10,20,10" />
         </Style>
+
+        <Style x:Key="SectionImage" TargetType="Image">
+            <Setter Property="Margin" Value="20,0,20,0" />
+        </Style>
     </UserControl.Resources>
     
     <ScrollViewer Name="PageScroller">
         <Border MaxWidth="950" Margin="20" BorderThickness="1" BorderBrush="#D3CAC1">
-            <DockPanel Background="#EAE0D6">
+            <DockPanel Background="#EAE0D6" Loaded="DockPanel_Loaded">
                 <!-- Header -->
                 <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Times New Roman" FontSize="38" FontWeight="Bold" Background="#3D3229" Foreground="#CCB" Padding="10">
                     Thanks for trying <Run Foreground="#998">LUFA</Run>
@@ -41,11 +45,11 @@
                 </TextBlock>
                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                     LUFA comes with a variety of example projects, showing off several of the library features. Also included is a number of bootloaders,
-                    full LUFA powered projects, and several user-contributed projects. To see these, open the New Example Project wizard from the
-                    <Run FontFamily="Consolas">File→New</Run> menu. Expand out the <Run FontStyle="Italic">FourWalledCubicle</Run> node, then the
-                    <Run FontStyle="Italic">Dean Camera - LUFA</Run> node to see a list of LUFA projects.
+                    full LUFA powered projects, and several user-contributed projects. To see these, open the <Hyperlink Click="NewExampleWizard_Click">New Example Project</Hyperlink>
+                    wizard from the <Run FontFamily="Consolas">File→New</Run> menu. Expand out the <Run FontStyle="Italic">FourWalledCubicle</Run> node, then
+                    the <Run FontStyle="Italic">Dean Camera - LUFA</Run> node to see a list of LUFA projects.
                 </TextBlock>
-                <Image DockPanel.Dock="Top" Stretch="UniformToFill" MaxWidth="950" Margin="20,0,20,0">
+                <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill" MaxWidth="950">
                     <Image.Source>
                         <BitmapImage UriSource="/LUFA;component/Resources/NewExampleWizard.png"/>
                     </Image.Source>
@@ -56,12 +60,12 @@
                     Configure LUFA
                 </TextBlock>
                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
-                    The LUFA Atmel Studio extension is fully integrated into the Atmel Studio IDE, including the LUFA sub-modules. Open the ASF Wizard
-                    from the <Run FontFamily="Consolas">ASF→ASF</Run> Wizard menu, choose your project from your current solution, then choose the LUFA
-                    library as the extension to configure from the Available Modules portion of the wizard. Here you can add and remove LUFA modules to
-                    and from your project as you need them.
+                    The LUFA Atmel Studio extension is fully integrated into the Atmel Studio IDE, including the LUFA sub-modules. Open the 
+                    <Run FontStyle="Italic">ASF Wizard</Run> from the <Run FontFamily="Consolas">ASF→ASF</Run> Wizard menu, choose your project from your current
+                    solution, then choose the LUFA library as the extension to configure from the <Run FontStyle="Italic">Available Modules</Run> portion of the
+                    wizard. Here you can add and remove LUFA modules toand from your project as you need them.
                 </TextBlock>
-                <Image DockPanel.Dock="Top" Stretch="UniformToFill" MaxWidth="825" Margin="20,0,20,0">
+                <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill" MaxWidth="825">
                     <Image.Source>
                         <BitmapImage UriSource="/LUFA;component/Resources/ASFWizard.png"/>
                     </Image.Source>
@@ -73,10 +77,10 @@
                 </TextBlock>
                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                     You can view your project's included LUFA modules any time you need to from the ASF Explorer window, accessible from the
-                    <Run FontFamily="Consolas">ASF→ASF</Run> Explorer menu. Here you can find a link to the module's corresponding API documentation in
-                    the LUFA manual, as well as a direct link to the module's API header.
+                    <Run FontFamily="Consolas">ASF→ASF</Run> Explorer menu. Here you can find a link to the module's corresponding API documentation in the LUFA
+                    manual, as well as a direct link to the module's API header.
                 </TextBlock>
-                <Image DockPanel.Dock="Top" Stretch="UniformToFill" MaxWidth="296" Margin="20,0,20,0">
+                <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill" MaxWidth="296">
                     <Image.Source>
                         <BitmapImage UriSource="/LUFA;component/Resources/ASFExplorer.png"/>
                     </Image.Source>
@@ -87,22 +91,24 @@
                     Get Help
                 </TextBlock>
                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
-                    If you installed the integrated help package, you can view the LUFA manual from the <Run FontFamily="Consolas">Help→View</Run> Help menu,
-                    or just jump directly to the relevant documentation for a function, variable, type or other LUFA symbol in your code by first selecting it
-                    and pressing the <Run FontFamily="Consolas">F1</Run> key. If the integrated Help package fails to install, you can re-try from the
-                    <Run FontFamily="Consolas">Help→LUFA Help→Reinstall</Run> Local Help menu entry.
+                    If you installed the <Hyperlink Click="OpenIntHelp_Click">integrated help</Hyperlink> package, you can view the LUFA manual from the
+                    <Run FontFamily="Consolas">Help→View</Run> Help menu, or just jump directly to the relevant documentation for a function, variable, type or
+                    other LUFA symbol in your code by first selecting it and pressing the <Run FontFamily="Consolas">F1</Run> key. If the integrated Help package
+                    fails to install, you can <Hyperlink Click="ReinstallIntHelp_Click">re-try</Hyperlink> from the
+                    <Run FontFamily="Consolas">Help→LUFA Help→Reinstall Local Help</Run> menu entry.
                 </TextBlock>
-                <Image DockPanel.Dock="Top" Stretch="Uniform" MaxHeight="300" Margin="20,0,20,0">
+                <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="Uniform" MaxHeight="300">
                     <Image.Source>
                         <BitmapImage UriSource="/LUFA;component/Resources/LUFAHelpMenu.png"/>
                     </Image.Source>
                 </Image>
                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
-                    The latest LUFA manual is also available for viewing online, if you do not wish to use the integrated help.
+                    The latest LUFA manual is also available for viewing <Hyperlink Click="OnlineHelp_Click">online</Hyperlink>, if you do not wish to use the
+                    integrated help.
                 </TextBlock>
                 <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
-                    If you are still stuck and need help, please post on the <Hyperlink Click="LUFAMailingList_Click">LUFA Mailing List</Hyperlink> - or just search the mailing list
-                    archives to see if your question has already been answered.
+                    If you are still stuck and need help, please post on the <Hyperlink Click="LUFAMailingList_Click">LUFA Mailing List</Hyperlink> - or just
+                    search the mailing list archives to see if your question has already been answered.
                 </TextBlock>
 
                 <!-- Read About the Latest Developments -->

@@ -13,7 +13,7 @@ namespace FourWalledCubicle.LUFA
     [Guid(GuidList.guidLUFAPkgString)]
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     [ProvideOptionPageAttribute(typeof(OptionsPage), "Extensions", "LUFA Library", 15600, 1912, true)]
-    [ProvideToolWindow(typeof(GettingStartedPageToolWindow), Style = VsDockStyle.MDI, Window = "C02047B1-FD51-456B-95D1-6FF77A2A1894", MultiInstances = false)]
+    [ProvideToolWindow(typeof(GettingStartedPageToolWindow), Style = VsDockStyle.MDI, MultiInstances = false)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class LUFAPackage : AtmelVsixPackage
     {
@@ -86,7 +86,9 @@ namespace FourWalledCubicle.LUFA
 
             if ((gettingStartedWindow != null) && (gettingStartedWindow.Frame != null))
             {
-                ((IVsWindowFrame)gettingStartedWindow.Frame).Show();
+                IVsWindowFrame gettingStartedWindowFrame = (IVsWindowFrame)gettingStartedWindow.Frame;
+
+                gettingStartedWindowFrame.Show();
                 gettingStartedWindow.ResetScrollPosition();
             }
         }
