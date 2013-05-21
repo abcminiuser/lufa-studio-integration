@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Media;
 using EnvDTE;
+using Microsoft.VisualStudio.Shell;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -15,9 +16,9 @@ namespace FourWalledCubicle.LUFA
 
         private DateTime mPreviousPlayTime = DateTime.MinValue;
 
-        public EasterEgg(DTE dte, OptionsPage settings)
+        public EasterEgg(OptionsPage settings)
         {
-            mDTE = dte;
+            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
             mSettings = settings;
 
             mBuildEvents = mDTE.Events.BuildEvents;

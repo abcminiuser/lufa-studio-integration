@@ -5,7 +5,6 @@ using Atmel.Studio.Services;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using VSHelp = Microsoft.VisualStudio.VSHelp;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -63,10 +62,9 @@ namespace FourWalledCubicle.LUFA
             }
 
             OleMenuCommandService menuService = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-            VSHelp.Help helpService = GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
-
-            mHelpLinks = new HelpToolbarEntries(mDTE, menuService, helpService, this);
-            mEasterEgg = new EasterEgg(mDTE, settings);
+            
+            mHelpLinks = new HelpToolbarEntries(menuService, this);
+            mEasterEgg = new EasterEgg(settings);
         }
 
         private void mDTEEvents_OnStartupComplete()

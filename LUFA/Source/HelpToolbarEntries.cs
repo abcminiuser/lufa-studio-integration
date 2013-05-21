@@ -1,8 +1,5 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using VSHelp = Microsoft.VisualStudio.VSHelp;
@@ -12,8 +9,8 @@ namespace FourWalledCubicle.LUFA
     class HelpToolbarEntries
     {
         private readonly DTE mDTE;
-        private readonly OleMenuCommandService mMenuService;
         private readonly VSHelp.Help mHelpService;
+        private readonly OleMenuCommandService mMenuService;
         private readonly LUFAPackage mLUFAPkg;
 
         internal static class CommandIDs
@@ -26,11 +23,11 @@ namespace FourWalledCubicle.LUFA
             public const int btnReinstallLocalHelp = 0x0108;
         }
 
-        public HelpToolbarEntries(DTE dte, OleMenuCommandService menuService, VSHelp.Help helpService, LUFAPackage LUFAPkg)
+        public HelpToolbarEntries(OleMenuCommandService menuService, LUFAPackage LUFAPkg)
         {
-            mDTE = dte;
+            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            mHelpService = Package.GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
             mMenuService = menuService;
-            mHelpService = helpService;
             mLUFAPkg = LUFAPkg;
 
             AddToolbarButtonHandler(
