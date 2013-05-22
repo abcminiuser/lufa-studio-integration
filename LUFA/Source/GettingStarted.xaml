@@ -24,6 +24,11 @@
 
         <Style x:Key="SectionImage" TargetType="Image">
             <Setter Property="Margin" Value="20,0,20,0" />
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
     
@@ -46,7 +51,7 @@
                         wizard from the <Run FontFamily="Consolas">File→New</Run> menu. Expand out the <Run FontStyle="Italic">FourWalledCubicle</Run> node, then
                         the <Run FontStyle="Italic">Dean Camera - LUFA</Run> node to see a list of LUFA projects.
                         </TextBlock>
-                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill" MaxWidth="950">
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}">
                             <Image.Source>
                                 <BitmapImage UriSource="/LUFA;component/Resources/NewExampleWizard.png"/>
                             </Image.Source>
@@ -62,7 +67,7 @@
                             solution, then choose the LUFA library as the extension to configure from the <Run FontStyle="Italic">Available Modules</Run> portion of the
                             wizard. Here you can add and remove LUFA modules toand from your project as you need them.
                         </TextBlock>
-                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill" MaxWidth="825">
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="None">
                             <Image.Source>
                                 <BitmapImage UriSource="/LUFA;component/Resources/ASFWizard.png"/>
                             </Image.Source>
@@ -77,7 +82,7 @@
                             <Run FontFamily="Consolas">ASF→ASF</Run> Explorer menu. Here you can find a link to the module's corresponding API documentation in the LUFA
                             manual, as well as a direct link to the module's API header.
                         </TextBlock>
-                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill" MaxWidth="296">
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="None">
                             <Image.Source>
                                 <BitmapImage UriSource="/LUFA;component/Resources/ASFExplorer.png"/>
                             </Image.Source>
@@ -94,7 +99,7 @@
                             fails to install, you can <Hyperlink Click="ReinstallIntHelp_Click">re-try</Hyperlink> from the
                             <Run FontFamily="Consolas">Help→LUFA Help→Reinstall Local Help</Run> menu entry.
                         </TextBlock>
-                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="Uniform" MaxHeight="300">
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill">
                             <Image.Source>
                                 <BitmapImage UriSource="/LUFA;component/Resources/LUFAHelpMenu.png"/>
                             </Image.Source>
