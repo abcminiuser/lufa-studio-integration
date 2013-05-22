@@ -65,7 +65,7 @@
                             The LUFA Atmel Studio extension is fully integrated into the Atmel Studio IDE, including the LUFA sub-modules. Open the 
                             <Run FontStyle="Italic">ASF Wizard</Run> from the <Run FontFamily="Consolas">ASF→ASF</Run> Wizard menu, choose your project from your current
                             solution, then choose the LUFA library as the extension to configure from the <Run FontStyle="Italic">Available Modules</Run> portion of the
-                            wizard. Here you can add and remove LUFA modules toand from your project as you need them.
+                            wizard. Here you can add and remove LUFA modules to and from your project as you need them.
                         </TextBlock>
                         <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="None">
                             <Image.Source>
