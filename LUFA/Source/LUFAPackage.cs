@@ -86,6 +86,12 @@ namespace FourWalledCubicle.LUFA
             {
                 IVsWindowFrame gettingStartedWindowFrame = (IVsWindowFrame)gettingStartedWindow.Frame;
 
+                try
+                {
+                    gettingStartedWindowFrame.SetProperty((int)__VSFPROPID.VSFPROPID_FrameMode, VSFRAMEMODE.VSFM_MdiChild);
+                }
+                catch { }
+
                 gettingStartedWindowFrame.Show();
                 gettingStartedWindow.ResetScrollPosition();
             }

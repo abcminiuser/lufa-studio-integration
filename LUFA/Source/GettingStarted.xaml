@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="2800" d:DesignWidth="1200" Background="#FF353535" BorderThickness="1" BorderBrush="#D3CAC1">
+      d:DesignHeight="3000" d:DesignWidth="1200" Background="#FF353535" BorderThickness="1" BorderBrush="#D3CAC1">
 
     <UserControl.Resources>
         <Style x:Key="InfoSection" TargetType="Expander">
@@ -31,7 +31,7 @@
         <Border MaxWidth="950" Margin="20" BorderThickness="1" BorderBrush="#D3CAC1">
             <DockPanel Background="#EAE0D6" Loaded="DockPanel_Loaded">
                 <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Times New Roman" FontSize="38" FontWeight="Bold" Background="#3D3229" Foreground="#CCB" Padding="10">
-                    Thanks for trying <Run Foreground="#998">LUFA</Run>
+                    Thanks for trying out <Run Foreground="#998">LUFA</Run>
                 </TextBlock>
 
                 <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Georgia" FontSize="18" FontStyle="Italic" Margin="0,40,0,40">
@@ -119,9 +119,11 @@
                     </DockPanel>
                 </Expander>
 
-                <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#353535" FontStyle="Italic" Foreground="#CCB" Padding="0,20,0,20">
+                <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#3D3229" FontStyle="Italic" Foreground="#CCB" Padding="0,20,0,20">
                     LUFA - the Lightweight USB Framework for AVRs
                 </TextBlock>
+
+                <Separator DockPanel.Dock="Top" Visibility="Hidden"/>
             </DockPanel>
         </Border>
     </ScrollViewer>
