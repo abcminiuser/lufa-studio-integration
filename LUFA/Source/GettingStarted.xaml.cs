@@ -9,10 +9,12 @@ namespace FourWalledCubicle.LUFA.Pages
     public partial class GettingStarted : UserControl
     {
         private readonly DTE mDTE;
+        private readonly VSHelp.Help mHelpService;
 
         public GettingStarted()
         {
             mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            mHelpService = Package.GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
 
             InitializeComponent();
         }
@@ -43,8 +45,7 @@ namespace FourWalledCubicle.LUFA.Pages
 
         private void OpenIntHelp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            VSHelp.Help helpService = Package.GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
-            helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
         }
 
         private void ReinstallIntHelp_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -56,7 +57,7 @@ namespace FourWalledCubicle.LUFA.Pages
         {
             mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/documentation");
         }
-
+        
         private void DockPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
            this.Dispatcher.Invoke(new Action( () => PageScroller.ScrollToTop() ));

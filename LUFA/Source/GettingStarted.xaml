@@ -26,7 +26,7 @@
             <Setter Property="Margin" Value="20,0,20,0" />
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Opacity="0.5"/>
+                    <DropShadowEffect ShadowDepth="6" Opacity="0.2"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -67,7 +67,7 @@
                             solution, then choose the LUFA library as the extension to configure from the <Run FontStyle="Italic">Available Modules</Run> portion of the
                             wizard. Here you can add and remove LUFA modules to and from your project as you need them.
                         </TextBlock>
-                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="None">
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}">
                             <Image.Source>
                                 <BitmapImage UriSource="/LUFA;component/Resources/ASFWizard.png"/>
                             </Image.Source>
@@ -99,7 +99,7 @@
                             fails to install, you can <Hyperlink Click="ReinstallIntHelp_Click">re-try</Hyperlink> from the
                             <Run FontFamily="Consolas">Help→LUFA Help→Reinstall Local Help</Run> menu entry.
                         </TextBlock>
-                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="UniformToFill">
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}">
                             <Image.Source>
                                 <BitmapImage UriSource="/LUFA;component/Resources/LUFAHelpMenu.png"/>
                             </Image.Source>
@@ -115,7 +115,7 @@
                     </DockPanel>
                 </Expander>
 
-                <Expander DockPanel.Dock="Top" IsExpanded="True" Style="{StaticResource InfoSection}" Header="Read About the Latest Developments">
+                <Expander DockPanel.Dock="Top" IsExpanded="True" Style="{StaticResource InfoSection}" Header="See the Latest Developments">
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             Keep up to date with the latest LUFA news; read the <Hyperlink Click="AuthorBlog_Click">author's blog</Hyperlink>, or see the
