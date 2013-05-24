@@ -118,6 +118,10 @@
                 <Expander DockPanel.Dock="Top" IsExpanded="True" Style="{StaticResource InfoSection}" Header="See the Latest Developments">
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                            Read the <Hyperlink Click="ChangeLog_Click">changelog</Hyperlink>, <Hyperlink Click="MigrationNotes_Click">migration notes</Hyperlink>
+                            or list of <Hyperlink Click="KnownIssues_Click">known issues</Hyperlink>.
+                        </TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             Keep up to date with the latest LUFA news; read the <Hyperlink Click="AuthorBlog_Click">author's blog</Hyperlink>, or see the
                             <Hyperlink Click="AuthorWebsite_Click">author's website</Hyperlink>.
                         </TextBlock>

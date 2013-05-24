@@ -57,7 +57,22 @@ namespace FourWalledCubicle.LUFA.Pages
         {
             mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/documentation");
         }
-        
+
+        private void ChangeLog_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page/ChangeLog");
+        }
+
+        private void MigrationNotes_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page/Migration");
+        }
+
+        private void KnownIssues_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page/KnownIssues");
+        }
+
         private void DockPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
            this.Dispatcher.Invoke(new Action( () => PageScroller.ScrollToTop() ));
