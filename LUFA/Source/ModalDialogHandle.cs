@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
+using System;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -10,14 +11,14 @@ namespace FourWalledCubicle.LUFA
 
         public ModalDialogHandle()
         {
-            this.mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
         }
 
         public System.IntPtr Handle
         {
             get
             {
-                return new System.IntPtr(mDTE.MainWindow.HWnd);
+                return (IntPtr)mDTE.MainWindow.HWnd;
             }
         }
     }

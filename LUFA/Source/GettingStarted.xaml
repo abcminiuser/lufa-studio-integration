@@ -33,7 +33,7 @@
     </UserControl.Resources>
     
     <ScrollViewer Name="PageScroller">
-        <Border MaxWidth="950" Margin="20" BorderThickness="1" BorderBrush="#D3CAC1">
+        <Border MaxWidth="950" Margin="20" BorderThickness="1" BorderBrush="#D3CAC1" Background="White">
             <DockPanel Background="#EAE0D6" Loaded="DockPanel_Loaded">
                 <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Times New Roman" FontSize="38" FontWeight="Bold" Background="#3D3229" Foreground="#CCB" Padding="10">
                     Thanks for trying out <Run Foreground="#998">LUFA</Run>
@@ -43,7 +43,7 @@
                     The LUFA extension is now installed and ready for use.
                 </TextBlock>
 
-                <Expander DockPanel.Dock="Top" IsExpanded="True" Style="{StaticResource InfoSection}" Header="Create an Example Project">
+                <Expander DockPanel.Dock="Top" IsExpanded="False" Style="{StaticResource InfoSection}" Header="Create an Example Project">
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                         LUFA comes with a variety of example projects, showing off several of the library features. Also included is a number of bootloaders,
@@ -59,7 +59,7 @@
                     </DockPanel>
                 </Expander>
 
-                <Expander DockPanel.Dock="Top" IsExpanded="True" Style="{StaticResource InfoSection}" Header="Configure LUFA">
+                <Expander DockPanel.Dock="Top" IsExpanded="False" Style="{StaticResource InfoSection}" Header="Configure LUFA">
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             The LUFA Atmel Studio extension is fully integrated into the Atmel Studio IDE, including the LUFA sub-modules. Open the 
@@ -75,7 +75,7 @@
                     </DockPanel>
                 </Expander>
 
-                <Expander DockPanel.Dock="Top" IsExpanded="True" Style="{StaticResource InfoSection}" Header="Find the Module APIs">
+                <Expander DockPanel.Dock="Top" IsExpanded="False" Style="{StaticResource InfoSection}" Header="Find the Module APIs">
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             You can view your project's included LUFA modules any time you need to from the ASF Explorer window, accessible from the
@@ -90,7 +90,7 @@
                     </DockPanel>
                 </Expander>
 
-                <Expander DockPanel.Dock="Top" IsExpanded="True" Style="{StaticResource InfoSection}" Header="Get Help">
+                <Expander DockPanel.Dock="Top" IsExpanded="False" Style="{StaticResource InfoSection}" Header="Get Help">
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             If you installed the <Hyperlink Click="OpenIntHelp_Click">integrated help</Hyperlink> package, you can view the LUFA manual from the
