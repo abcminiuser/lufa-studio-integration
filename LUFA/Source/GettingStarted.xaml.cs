@@ -77,5 +77,15 @@ namespace FourWalledCubicle.LUFA.Pages
         {
            this.Dispatcher.Invoke(new Action( () => PageScroller.ScrollToTop() ));
         }
+
+        private void License_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.LicenseInfo");
+        }
+
+        private void Donate_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Donating");
+        }
     }
 }

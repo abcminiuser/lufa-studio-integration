@@ -36,7 +36,7 @@
         <Border MaxWidth="950" Margin="20" BorderThickness="1" BorderBrush="#D3CAC1" Background="White">
             <DockPanel Background="#EAE0D6" Loaded="DockPanel_Loaded">
                 <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Times New Roman" FontSize="38" FontWeight="Bold" Background="#3D3229" Foreground="#CCB" Padding="10">
-                    Thanks for trying out <Run Foreground="#998">LUFA</Run>
+                    Thank you for using <Run Foreground="#998">LUFA</Run>
                 </TextBlock>
 
                 <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Georgia" FontSize="18" FontStyle="Italic" Margin="0,40,0,40">
@@ -131,6 +131,23 @@
                 <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#3D3229" FontStyle="Italic" Foreground="#CCB" Padding="0,20,0,20">
                     LUFA - the Lightweight USB Framework for AVRs
                 </TextBlock>
+
+                <DockPanel DockPanel.Dock="Bottom">
+                    <DockPanel.Resources>
+                        <Style TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}">
+                            <Setter Property="Foreground" Value="#3D3229"/>
+                            <Setter Property="FontFamily" Value="Georgia"/>
+                            <Setter Property="FontSize" Value="16"/>
+                        </Style>
+                    </DockPanel.Resources>
+
+                    <TextBlock DockPanel.Dock="Left" TextAlignment="Left" Padding="100, 10">
+                        <Hyperlink Click="License_Click">License</Hyperlink>
+                    </TextBlock>
+                    <TextBlock DockPanel.Dock="Right" TextAlignment="Right" Padding="100, 10">
+                        <Hyperlink Click="Donate_Click">Donate</Hyperlink>
+                    </TextBlock>
+                </DockPanel>
 
                 <Separator DockPanel.Dock="Top" Visibility="Hidden"/>
             </DockPanel>
