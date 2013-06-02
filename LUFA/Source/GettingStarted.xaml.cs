@@ -60,17 +60,17 @@ namespace FourWalledCubicle.LUFA.Pages
 
         private void ChangeLog_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page/ChangeLog");
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.ChangeLog");
         }
 
         private void MigrationNotes_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page/Migration");
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Migration");
         }
 
         private void KnownIssues_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page/KnownIssues");
+            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.KnownIssues");
         }
 
         private void DockPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)
