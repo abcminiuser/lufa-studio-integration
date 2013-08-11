@@ -73,11 +73,6 @@ namespace FourWalledCubicle.LUFA.Pages
             mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.KnownIssues");
         }
 
-        private void DockPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-           this.Dispatcher.Invoke(new Action( () => PageScroller.ScrollToTop() ));
-        }
-
         private void License_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.LicenseInfo");
@@ -86,6 +81,11 @@ namespace FourWalledCubicle.LUFA.Pages
         private void Donate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Donating");
+        }
+
+        private void DockPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Dispatcher.Invoke(new Action(() => PageScroller.ScrollToTop()));
         }
     }
 }

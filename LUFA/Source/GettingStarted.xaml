@@ -39,8 +39,11 @@
                     Thank you for using <Run Foreground="#998">LUFA</Run>
                 </TextBlock>
 
-                <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Georgia" FontSize="18" FontStyle="Italic" Margin="0,40,0,40">
+                <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Georgia" FontSize="20" Margin="0,40,0,10">
                     The LUFA extension is now installed and ready for use.
+                </TextBlock>
+                <TextBlock DockPanel.Dock="Top" TextAlignment="Center" FontFamily="Georgia" FontSize="13" FontStyle="Italic" Margin="0,0,0,40">
+                    Expand the sections below for information on how to get started.
                 </TextBlock>
 
                 <Expander DockPanel.Dock="Top" IsExpanded="False" Style="{StaticResource InfoSection}" Header="Create an Example Project">
@@ -128,8 +131,8 @@
                     </DockPanel>
                 </Expander>
 
-                <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#3D3229" FontStyle="Italic" Foreground="#CCB" Padding="0,20,0,20">
-                    LUFA - the Lightweight USB Framework for AVRs
+                <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#3D3229" Foreground="#CCB" Padding="0,20,0,20">
+                    <Run FontWeight="Bold">LUFA</Run> - <Run FontStyle="Italic">the Lightweight USB Framework for AVRs</Run>
                 </TextBlock>
 
                 <DockPanel DockPanel.Dock="Bottom">
