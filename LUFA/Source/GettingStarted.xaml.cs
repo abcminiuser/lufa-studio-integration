@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using EnvDTE;
+using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
 using VSHelp = Microsoft.VisualStudio.VSHelp;
 
@@ -17,6 +20,32 @@ namespace FourWalledCubicle.LUFA.Pages
             mHelpService = Package.GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
 
             InitializeComponent();
+
+            IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
+            if (extensionManagerService != null)
+            {
+                IInstalledExtension lufaExt = null;
+                if (extensionManagerService.TryGetInstalledExtension(GuidList.guidLUFAVSIXManifestString, out lufaExt))
+                {
+                    string[] lufaVersionSegments = lufaExt.Header.Version.ToString().Split('.');
+
+                    Run versionTextRun = new Run();
+                    versionTextRun.FontWeight = System.Windows.FontWeights.Bold;
+                    versionTextRun.FontSize = 12;
+
+                    if (lufaVersionSegments.First().Equals("0"))
+                    {
+                        versionTextRun.Text += " (Test Release " + lufaVersionSegments[1] + ")";
+                    }
+                    else
+                    {
+                        versionTextRun.Text += " (Version " + lufaVersionSegments.Last() + ")";
+                    }
+
+                    FooterText.Inlines.InsertAfter(FooterText.Inlines.LastInline, new LineBreak());
+                    FooterText.Inlines.InsertAfter(FooterText.Inlines.LastInline, versionTextRun);
+                }
+            }
         }
 
         private void NewExampleWizard_Click(object sender, System.Windows.RoutedEventArgs e)

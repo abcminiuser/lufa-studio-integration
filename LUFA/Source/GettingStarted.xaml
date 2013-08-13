@@ -131,7 +131,7 @@
                     </DockPanel>
                 </Expander>
 
-                <TextBlock DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#3D3229" Foreground="#CCB" Padding="0,20,0,20">
+                <TextBlock Name="FooterText" DockPanel.Dock="Bottom" TextAlignment="Center" FontFamily="Georgia" FontSize="16" Background="#3D3229" Foreground="#CCB" Padding="0,20,0,20">
                     <Run FontWeight="Bold">LUFA</Run> - <Run FontStyle="Italic">the Lightweight USB Framework for AVRs</Run>
                 </TextBlock>
 
