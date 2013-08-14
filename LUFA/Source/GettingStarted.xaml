@@ -29,6 +29,8 @@
                     <DropShadowEffect ShadowDepth="6" Opacity="0.2"/>
                 </Setter.Value>
             </Setter>
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
+            <Setter Property="Stretch" Value="None" />
         </Style>
     </UserControl.Resources>
     
@@ -85,7 +87,7 @@
                             <Run FontFamily="Consolas">ASF→ASF</Run> Explorer menu. Here you can find a link to the module's corresponding API documentation in the LUFA
                             manual, as well as a direct link to the module's API header.
                         </TextBlock>
-                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}" Stretch="None">
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}">
                             <Image.Source>
                                 <BitmapImage UriSource="/LUFA;component/Resources/ASFExplorer.png"/>
                             </Image.Source>
