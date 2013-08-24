@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
 
@@ -45,7 +46,20 @@ namespace FourWalledCubicle.LUFA
             if (extensionManagerService == null)
                 return null;
 
-            return extensionManagerService.GetEnabledExtensionContentLocations(contentName).FirstOrDefault();
+            IInstalledExtension lufaExt = null;
+            if (extensionManagerService.TryGetInstalledExtension(GuidList.guidLUFAVSIXManifestString, out lufaExt) == false)
+                return null;
+
+            string contentPath = null;
+
+            try
+            {
+                string contentRelativePath = lufaExt.Content.Where(c => c.ContentTypeName == contentName).First().RelativePath;
+                contentPath = Path.Combine(lufaExt.InstallPath, contentRelativePath);
+            }
+            catch { }
+
+            return contentPath;
         }
     }
 }
