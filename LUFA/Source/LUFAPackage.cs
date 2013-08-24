@@ -69,7 +69,7 @@ namespace FourWalledCubicle.LUFA
 
         private void mDTEEvents_OnStartupComplete()
         {
-            if (isFirstRun)
+            if (isFirstRun || ExtensionInformation.IsUpdated())
             {
                 ShowGettingStartedPage();
 

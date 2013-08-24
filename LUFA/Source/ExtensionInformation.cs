@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.Win32;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -38,6 +39,37 @@ namespace FourWalledCubicle.LUFA
                 versionType = LUFAReleaseTypes.Normal;
                 return lufaVersionSegments.Last();
             }
+        }
+
+        public static bool IsUpdated()
+        {
+            bool isUpdated = false;
+
+            const string lufaInstalledVersionKeyName = @"Software\\LUFA\\\AtmelStudioExtension\\\InstalledVersion";
+
+            LUFAReleaseTypes currentReleaseType;
+            string currentVersion = GetVersion(out currentReleaseType);
+
+            try
+            {
+                RegistryKey versionNode = Registry.CurrentUser.OpenSubKey(lufaInstalledVersionKeyName, true);
+
+                if (versionNode != null)
+                {
+                    isUpdated = (versionNode.GetValue("Version").ToString().Equals(currentVersion) == false) ||
+                                (versionNode.GetValue("Type").ToString().Equals(currentReleaseType.ToString()) == false);
+                }
+                else
+                {
+                    versionNode = Registry.CurrentUser.CreateSubKey(lufaInstalledVersionKeyName);
+                }
+
+                versionNode.SetValue("Version", currentVersion);
+                versionNode.SetValue("Type", currentReleaseType.ToString());
+            }
+            catch { }
+
+            return isUpdated;
         }
 
         public static string GetContentLocation(string contentName)
