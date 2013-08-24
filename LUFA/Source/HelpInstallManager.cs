@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.ExtensionManager;
-using Microsoft.VisualStudio.Shell;
 using Microsoft.Win32;
 
 namespace FourWalledCubicle.LUFA
@@ -34,12 +31,11 @@ namespace FourWalledCubicle.LUFA
 
         private static void AddRemoveHelp(HelpAction action)
         {
-            IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
-            if (extensionManagerService == null)
-                return;
-
-            string helpPackagePath = extensionManagerService.GetEnabledExtensionContentLocations("MSHelp").FirstOrDefault();
+            string helpPackagePath = ExtensionInformation.GetContentLocation("MSHelp");
             string helpManagerArguments = @"/product ""AtmelStudio"" /version ""6.1"" /locale en-us";
+
+            if (helpPackagePath == null)
+                return;
 
             switch (action)
             {

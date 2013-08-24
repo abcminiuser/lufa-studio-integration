@@ -45,7 +45,7 @@ namespace FourWalledCubicle.LUFA
 
             if ((mSettings.EasterEgg == true) && /* Must be enabled */
                 (DateTime.Now.Hour >= 20) && /* Must be after 8PM */
-                (mRandom.Next(20) == 2) && /* 5% chance of occurance */
+                (mRandom.Next(50) == 1) && /* 2% chance of occurance */
                 ((DateTime.Now - mPreviousPlayTime).TotalMinutes > 45)) /* Must be at least 45 minutes since last occurance */
             {
                 mPreviousPlayTime = DateTime.Now;

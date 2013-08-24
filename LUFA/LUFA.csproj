@@ -132,6 +132,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\ExtensionInformation.cs" />
     <Compile Include="Source\GettingStartedPageToolWindow.cs" />
     <Compile Include="Source\GettingStarted.xaml.cs">
       <DependentUpon>GettingStarted.xaml</DependentUpon>
