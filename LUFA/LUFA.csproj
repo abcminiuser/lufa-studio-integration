@@ -180,6 +180,7 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\ProjectOptions.png" />
     <Resource Include="Resources\InternetToolbarIcon.bmp" />
     <Resource Include="Resources\HelpToolbarIcon.bmp" />
     <Resource Include="Resources\ASFExplorer.png" />

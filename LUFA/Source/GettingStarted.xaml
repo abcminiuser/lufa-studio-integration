@@ -77,6 +77,15 @@
                                 <BitmapImage UriSource="/LUFA;component/Resources/ASFWizard.png"/>
                             </Image.Source>
                         </Image>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                            Additional project configuration options such as the speed of the system clock and USB core clock can be configured via the Toolchain Options
+                            screen, <Run FontFamily="Consolas">Project->{Project Name} Options</Run> menu item in the <Run FontFamily="Consolas">Toolchain</Run> tab.
+                        </TextBlock>
+                        <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}">
+                            <Image.Source>
+                                <BitmapImage UriSource="/LUFA;component/Resources/ProjectOptions.png"/>
+                            </Image.Source>
+                        </Image>
                     </DockPanel>
                 </Expander>
 
