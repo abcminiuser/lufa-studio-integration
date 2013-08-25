@@ -14,7 +14,7 @@ namespace FourWalledCubicle.LUFA
             mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
         }
 
-        public System.IntPtr Handle
+        public IntPtr Handle
         {
             get
             {

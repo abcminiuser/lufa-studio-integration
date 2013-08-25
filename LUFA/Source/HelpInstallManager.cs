@@ -21,7 +21,7 @@ namespace FourWalledCubicle.LUFA
 
             try
             {
-                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Help\v1.0");
+                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"Software\\Microsoft\\Help\\v1.0");
                 helpRootFolder = (string)registryKey.GetValue("AppRoot");
             }
             catch { }

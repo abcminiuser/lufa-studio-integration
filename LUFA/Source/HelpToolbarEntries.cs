@@ -2,14 +2,14 @@
 using System.ComponentModel.Design;
 using EnvDTE;
 using Microsoft.VisualStudio.Shell;
-using VSHelp = Microsoft.VisualStudio.VSHelp;
+using Microsoft.VisualStudio.VSHelp;
 
 namespace FourWalledCubicle.LUFA
 {
     class HelpToolbarEntries
     {
         private readonly DTE mDTE;
-        private readonly VSHelp.Help mHelpService;
+        private readonly Help mHelpService;
         private readonly OleMenuCommandService mMenuService;
         private readonly LUFAPackage mLUFAPkg;
 
@@ -26,7 +26,7 @@ namespace FourWalledCubicle.LUFA
         public HelpToolbarEntries(OleMenuCommandService menuService, LUFAPackage LUFAPkg)
         {
             mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
-            mHelpService = Package.GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
+            mHelpService = Package.GetGlobalService(typeof(SVsHelp)) as Help;
             mMenuService = menuService;
             mLUFAPkg = LUFAPkg;
 
