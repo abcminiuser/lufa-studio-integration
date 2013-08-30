@@ -32,32 +32,47 @@ namespace FourWalledCubicle.LUFA
 
             AddToolbarButtonHandler(
                     CommandIDs.btnGettingStarted,
-                    (c, a) => { mLUFAPkg.ShowGettingStartedPage(); }
+                    (c, a) => {
+                        mLUFAPkg.ShowGettingStartedPage();
+                    }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnShowLocalHelp,
-                    (c, a) => { mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index"); }
+                    (c, a) => {
+                        mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
+                    }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnProjectPage,
-                    (c, a) => { mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org"); }
+                    (c, a) => {
+                        mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org");
+                    }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnMailingList,
-                    (c, a) => { mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/support"); }
+                    (c, a) => {
+                        mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/support");
+                    }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnDocumentation,
-                    (c, a) => { mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/documentation"); }
+                    (c, a) => {
+                        ExtensionInformation.LUFAReleaseTypes releaseType;
+                        string versionString = ExtensionInformation.GetVersion(out releaseType);
+
+                        mDTE.ItemOperations.Navigate(string.Format(@"http://www.lufa-lib.org/documentation/{0}/html", versionString));
+                    }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnReinstallLocalHelp,
-                    (c, a) => { HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.REINSTALL_HELP); }
+                    (c, a) => {
+                        HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.REINSTALL_HELP);
+                    }
                 );
         }
 

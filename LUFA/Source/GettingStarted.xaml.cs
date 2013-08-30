@@ -78,7 +78,10 @@ namespace FourWalledCubicle.LUFA.Pages
 
         private void OnlineHelp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/documentation");
+            ExtensionInformation.LUFAReleaseTypes releaseType;
+            string versionString = ExtensionInformation.GetVersion(out releaseType);
+
+            mDTE.ItemOperations.Navigate(string.Format(@"http://www.lufa-lib.org/documentation/{0}/html", versionString));
         }
 
         private void ChangeLog_Click(object sender, System.Windows.RoutedEventArgs e)
