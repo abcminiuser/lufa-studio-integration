@@ -45,7 +45,7 @@ namespace FourWalledCubicle.LUFA
         {
             bool isUpdated = false;
 
-            const string lufaInstalledVersionKeyName = @"Software\\LUFA\\\AtmelStudioExtension\\\InstalledVersion";
+            const string lufaInstalledVersionKeyName = @"Software\LUFA\AtmelStudioExtension\InstalledVersion";
 
             LUFAReleaseTypes currentReleaseType;
             string currentVersion = GetVersion(out currentReleaseType);
