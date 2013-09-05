@@ -28,14 +28,9 @@ namespace FourWalledCubicle.LUFA.Pages
                 versionTextRun.FontWeight = System.Windows.FontWeights.Bold;
                 versionTextRun.FontSize = 12;
 
-                if (releaseType == ExtensionInformation.LUFAReleaseTypes.Test)
-                {
-                    versionTextRun.Text += " (Test Release " + versionString + ")";
-                }
-                else
-                {
-                    versionTextRun.Text += " (Version " + versionString + ")";
-                }
+                versionTextRun.Text = String.Format("({0} {1})",
+                    (releaseType == ExtensionInformation.LUFAReleaseTypes.Test) ? "Test Release" : "Version",
+                    versionString);
 
                 FooterText.Inlines.InsertAfter(FooterText.Inlines.LastInline, new LineBreak());
                 FooterText.Inlines.InsertAfter(FooterText.Inlines.LastInline, versionTextRun);
