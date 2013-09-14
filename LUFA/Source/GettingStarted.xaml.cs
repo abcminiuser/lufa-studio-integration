@@ -39,11 +39,32 @@ namespace FourWalledCubicle.LUFA.Pages
 
         private void NewExampleWizard_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            try
-            {
-                mDTE.ExecuteCommand("File.ExampleProject", "");
-            }
-            catch { }
+            dynamic asfAutomation = mDTE.GetObject("AsfExampleProjectSearch.Automation");
+
+            if (asfAutomation != null)
+                asfAutomation.IsRunFromIntegrationTestContext = true;
+
+            System.Threading.Tasks.Task.Factory.StartNew(
+                () => {
+                    try
+                    {
+                        mDTE.ExecuteCommand("File.ExampleProject", "");
+                    }
+                    catch { };
+                });
+
+            System.Threading.Tasks.Task.Factory.StartNew(
+                () => {
+                    if (asfAutomation == null)
+                        return;
+
+                    while (asfAutomation.IsExampleProjectUiLoaded == false)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                    }
+
+                    asfAutomation.SearchInExampleProjectUI("LUFA");
+                });
         }
 
         private void AuthorBlog_Click(object sender, System.Windows.RoutedEventArgs e)
