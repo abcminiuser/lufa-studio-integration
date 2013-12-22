@@ -68,7 +68,7 @@
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             The LUFA Atmel Studio extension is fully integrated into the Atmel Studio IDE, including the LUFA sub-modules. Open the 
-                            <Run FontStyle="Italic">ASF Wizard</Run> from the <Run FontFamily="Consolas">ASF→ASF</Run> Wizard menu, choose your project from your current
+                            <Run FontStyle="Italic">ASF Wizard</Run> from the <Run FontFamily="Consolas">ASF→ASF Wizard</Run> menu, choose your project from your current
                             solution, then choose the LUFA library as the extension to configure from the <Run FontStyle="Italic">Available Modules</Run> portion of the
                             wizard. Here you can add and remove LUFA modules to and from your project as you need them.
                         </TextBlock>
@@ -93,7 +93,7 @@
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             You can view your project's included LUFA modules any time you need to from the ASF Explorer window, accessible from the
-                            <Run FontFamily="Consolas">ASF→ASF</Run> Explorer menu. Here you can find a link to the module's corresponding API documentation in the LUFA
+                            <Run FontFamily="Consolas">ASF→ASF Explorer</Run> menu. Here you can find a link to the module's corresponding API documentation in the LUFA
                             manual, as well as a direct link to the module's API header.
                         </TextBlock>
                         <Image DockPanel.Dock="Top" Style="{StaticResource SectionImage}">
@@ -108,7 +108,7 @@
                     <DockPanel>
                         <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
                             If you installed the <Hyperlink Click="OpenIntHelp_Click">integrated help</Hyperlink> package, you can view the LUFA manual from the
-                            <Run FontFamily="Consolas">Help→View</Run> Help menu, or just jump directly to the relevant documentation for a function, variable, type or
+                            <Run FontFamily="Consolas">Help→View Help</Run> menu, or just jump directly to the relevant documentation for a function, variable, type or
                             other LUFA symbol in your code by first selecting it and pressing the <Run FontFamily="Consolas">F1</Run> key. If the integrated Help package
                             fails to install, you can <Hyperlink Click="ReinstallIntHelp_Click">re-try</Hyperlink> from the
                             <Run FontFamily="Consolas">Help→LUFA Help→Reinstall Local Help</Run> menu entry.
