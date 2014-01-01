@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.Shell;
 
 namespace FourWalledCubicle.LUFA
 {
+    [System.ComponentModel.DesignerCategory("")]
     public class OptionsPage : DialogPage
     {
         private bool mEasterEgg = true;
