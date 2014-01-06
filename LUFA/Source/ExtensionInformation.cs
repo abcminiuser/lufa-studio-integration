@@ -3,11 +3,45 @@ using System.Linq;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.Win32;
+using EnvDTE;
 
 namespace FourWalledCubicle.LUFA
 {
     abstract class ExtensionInformation
     {
+        public abstract class Shell
+        {
+            public static string GetName()
+            {
+                string productName = @"AtmelStudio";
+
+                try
+                {
+                    DTE packageDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+                    RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
+                    productName = (string)registryKey.GetValue("AppName");
+                }
+                catch { }
+
+                return productName;
+            }
+
+            public static string GetVersion()
+            {
+                string productName = @"6.1";
+
+                try
+                {
+                    DTE packageDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+                    RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
+                    productName = (string)registryKey.GetValue("ProductVersion");
+                }
+                catch { }
+
+                return productName;
+            }
+        }
+
         public enum LUFAReleaseTypes
         {
             Unknown,

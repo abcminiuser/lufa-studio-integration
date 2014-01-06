@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using Microsoft.VisualStudio.Shell;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -30,43 +29,16 @@ namespace FourWalledCubicle.LUFA
             return Path.Combine(helpRootFolder, "HelpLibManager.exe");
         }
 
-        private static string GetShellName()
-        {
-            string productName = @"AtmelStudio";
-
-            try
-            {
-                EnvDTE.DTE packageDTE = Package.GetGlobalService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
-                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
-                productName = (string)registryKey.GetValue("AppName");
-            }
-            catch { }
-
-            return productName;
-        }
-
-        private static string GetShellVersion()
-        {
-            string productName = @"6.1";
-
-            try
-            {
-                EnvDTE.DTE packageDTE = Package.GetGlobalService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
-                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
-                productName = (string)registryKey.GetValue("ProductVersion");
-            }
-            catch { }
-
-            return productName;
-        }
-
         private static void AddRemoveHelp(HelpAction action)
         {
+            string shellName = ExtensionInformation.Shell.GetName();
+            string shellVersion = ExtensionInformation.Shell.GetVersion();
             string helpPackagePath = ExtensionInformation.GetContentLocation("MSHelp");
-            string helpManagerArguments = string.Format(@"/product ""{0}"" /version ""{1}"" /locale en-us", GetShellName(), GetShellVersion());
 
             if (helpPackagePath == null)
                 return;
+
+            string helpManagerArguments = string.Format(@"/product ""{0}"" /version ""{1}"" /locale en-us", shellName, shellVersion);
 
             switch (action)
             {

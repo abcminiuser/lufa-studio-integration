@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -15,12 +16,22 @@ namespace FourWalledCubicle.LUFA
 
             this.Caption = "LUFA - Getting Started";
             base.Content = _content;
-            ResetScrollPosition();
         }
 
         public void ResetScrollPosition()
         {
             _content.Dispatcher.Invoke(new Action( () => _content.PageScroller.ScrollToTop() ));
+        }
+
+        public void ForceMDIDock()
+        {
+            IVsWindowFrame gettingStartedWindowFrame = (IVsWindowFrame)this.Frame;
+
+            try
+            {
+                gettingStartedWindowFrame.SetProperty((int)__VSFPROPID.VSFPROPID_FrameMode, VSFRAMEMODE.VSFM_MdiChild);
+            }
+            catch { }
         }
     }
 }

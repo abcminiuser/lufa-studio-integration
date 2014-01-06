@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using EnvDTE;
@@ -25,7 +26,7 @@ namespace FourWalledCubicle.LUFA.Pages
             if (versionString != null)
             {
                 Run versionTextRun = new Run();
-                versionTextRun.FontWeight = System.Windows.FontWeights.Bold;
+                versionTextRun.FontWeight = FontWeights.Bold;
                 versionTextRun.FontSize = 12;
 
                 versionTextRun.Text = String.Format("({0} {1})",

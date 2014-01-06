@@ -24,6 +24,14 @@ namespace FourWalledCubicle.LUFA
 
         private bool _isFirstRun = false;
 
+        public LUFAPackage() : base(GuidList.guidLUFAVSIXManifestString)
+        {
+            _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+
+            _DTEEvents = _DTE.Events.DTEEvents;
+            _DTEEvents.OnStartupComplete += new _dispDTEEvents_OnStartupCompleteEventHandler(DTEEvents_OnStartupComplete);      
+        }
+
         protected override void DoInstallActions()
         {
             base.DoInstallActions();
@@ -36,14 +44,6 @@ namespace FourWalledCubicle.LUFA
             base.DoUninstallActions();
 
             HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.UNINSTALL_HELP);
-        }
-
-        public LUFAPackage() : base(GuidList.guidLUFAVSIXManifestString)
-        {
-            _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
-
-            _DTEEvents = _DTE.Events.DTEEvents;
-            _DTEEvents.OnStartupComplete += new _dispDTEEvents_OnStartupCompleteEventHandler(mDTEEvents_OnStartupComplete);      
         }
 
         protected override void PackageInitialize()
@@ -67,13 +67,14 @@ namespace FourWalledCubicle.LUFA
             _easterEgg = new EasterEgg(settings);
         }
 
-        private void mDTEEvents_OnStartupComplete()
+        private void DTEEvents_OnStartupComplete()
         {
             if (ExtensionInformation.IsUpdated() || _isFirstRun)
             {
                 ShowGettingStartedPage();
 
-                HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.INSTALL_HELP);
+                if (_isFirstRun)
+                    HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.INSTALL_HELP);
             }
         }
 
@@ -86,13 +87,8 @@ namespace FourWalledCubicle.LUFA
             {
                 IVsWindowFrame gettingStartedWindowFrame = (IVsWindowFrame)gettingStartedWindow.Frame;
 
-                try
-                {
-                    gettingStartedWindowFrame.SetProperty((int)__VSFPROPID.VSFPROPID_FrameMode, VSFRAMEMODE.VSFM_MdiChild);
-                }
-                catch { }
-
                 gettingStartedWindowFrame.Show();
+                gettingStartedWindow.ForceMDIDock();
                 gettingStartedWindow.ResetScrollPosition();
             }
         }
