@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using Microsoft.VisualStudio.Shell;
 
 namespace FourWalledCubicle.LUFA
 {
@@ -29,10 +30,40 @@ namespace FourWalledCubicle.LUFA
             return Path.Combine(helpRootFolder, "HelpLibManager.exe");
         }
 
+        private static string GetShellName()
+        {
+            string productName = @"AtmelStudio";
+
+            try
+            {
+                EnvDTE.DTE packageDTE = Package.GetGlobalService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
+                productName = (string)registryKey.GetValue("AppName");
+            }
+            catch { }
+
+            return productName;
+        }
+
+        private static string GetShellVersion()
+        {
+            string productName = @"6.1";
+
+            try
+            {
+                EnvDTE.DTE packageDTE = Package.GetGlobalService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
+                RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
+                productName = (string)registryKey.GetValue("ProductVersion");
+            }
+            catch { }
+
+            return productName;
+        }
+
         private static void AddRemoveHelp(HelpAction action)
         {
             string helpPackagePath = ExtensionInformation.GetContentLocation("MSHelp");
-            string helpManagerArguments = @"/product ""AtmelStudio"" /version ""6.1"" /locale en-us";
+            string helpManagerArguments = string.Format(@"/product ""{0}"" /version ""{1}"" /locale en-us", GetShellName(), GetShellVersion());
 
             if (helpPackagePath == null)
                 return;
