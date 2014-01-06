@@ -8,10 +8,10 @@ namespace FourWalledCubicle.LUFA
 {
     class HelpToolbarEntries
     {
-        private readonly DTE mDTE;
-        private readonly Help mHelpService;
-        private readonly OleMenuCommandService mMenuService;
-        private readonly LUFAPackage mLUFAPkg;
+        private readonly DTE _DTE;
+        private readonly Help _helpService;
+        private readonly OleMenuCommandService _menuService;
+        private readonly LUFAPackage _LUFAPkg;
 
         internal static class CommandIDs
         {
@@ -25,36 +25,36 @@ namespace FourWalledCubicle.LUFA
 
         public HelpToolbarEntries(OleMenuCommandService menuService, LUFAPackage LUFAPkg)
         {
-            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
-            mHelpService = Package.GetGlobalService(typeof(SVsHelp)) as Help;
-            mMenuService = menuService;
-            mLUFAPkg = LUFAPkg;
+            _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            _helpService = Package.GetGlobalService(typeof(SVsHelp)) as Help;
+            _menuService = menuService;
+            _LUFAPkg = LUFAPkg;
 
             AddToolbarButtonHandler(
                     CommandIDs.btnGettingStarted,
                     (c, a) => {
-                        mLUFAPkg.ShowGettingStartedPage();
+                        _LUFAPkg.ShowGettingStartedPage();
                     }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnShowLocalHelp,
                     (c, a) => {
-                        mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
+                        _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
                     }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnProjectPage,
                     (c, a) => {
-                        mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org");
+                        _DTE.ItemOperations.Navigate(@"http://www.lufa-lib.org");
                     }
                 );
 
             AddToolbarButtonHandler(
                     CommandIDs.btnMailingList,
                     (c, a) => {
-                        mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/support");
+                        _DTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/support");
                     }
                 );
 
@@ -64,7 +64,7 @@ namespace FourWalledCubicle.LUFA
                         ExtensionInformation.LUFAReleaseTypes releaseType;
                         string versionString = ExtensionInformation.GetVersion(out releaseType);
 
-                        mDTE.ItemOperations.Navigate(string.Format(@"http://www.lufa-lib.org/documentation/{0}/html", versionString));
+                        _DTE.ItemOperations.Navigate(string.Format(@"http://www.lufa-lib.org/documentation/{0}/html", versionString));
                     }
                 );
 
@@ -86,7 +86,7 @@ namespace FourWalledCubicle.LUFA
             if (btnMenuCommand == null)
                 return;
 
-            mMenuService.AddCommand(btnMenuCommand);
+            _menuService.AddCommand(btnMenuCommand);
         }
     }
 }

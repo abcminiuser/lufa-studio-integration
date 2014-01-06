@@ -16,19 +16,19 @@ namespace FourWalledCubicle.LUFA
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class LUFAPackage : AtmelVsixPackage
     {
-        private readonly DTE mDTE;
-        private readonly DTEEvents mDTEEvents;
+        private readonly DTE _DTE;
+        private readonly DTEEvents _DTEEvents;
 
-        private HelpToolbarEntries mHelpLinks;
-        private EasterEgg mEasterEgg;
+        private HelpToolbarEntries _helpLinks;
+        private EasterEgg _easterEgg;
 
-        private bool isFirstRun = false;
+        private bool _isFirstRun = false;
 
         protected override void DoInstallActions()
         {
             base.DoInstallActions();
 
-            isFirstRun = true;
+            _isFirstRun = true;
         }
 
         protected override void DoUninstallActions()
@@ -40,10 +40,10 @@ namespace FourWalledCubicle.LUFA
 
         public LUFAPackage() : base(GuidList.guidLUFAVSIXManifestString)
         {
-            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
 
-            mDTEEvents = mDTE.Events.DTEEvents;
-            mDTEEvents.OnStartupComplete += new _dispDTEEvents_OnStartupCompleteEventHandler(mDTEEvents_OnStartupComplete);      
+            _DTEEvents = _DTE.Events.DTEEvents;
+            _DTEEvents.OnStartupComplete += new _dispDTEEvents_OnStartupCompleteEventHandler(mDTEEvents_OnStartupComplete);      
         }
 
         protected override void PackageInitialize()
@@ -63,13 +63,13 @@ namespace FourWalledCubicle.LUFA
 
             OleMenuCommandService menuService = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             
-            mHelpLinks = new HelpToolbarEntries(menuService, this);
-            mEasterEgg = new EasterEgg(settings);
+            _helpLinks = new HelpToolbarEntries(menuService, this);
+            _easterEgg = new EasterEgg(settings);
         }
 
         private void mDTEEvents_OnStartupComplete()
         {
-            if (ExtensionInformation.IsUpdated() || isFirstRun)
+            if (ExtensionInformation.IsUpdated() || _isFirstRun)
             {
                 ShowGettingStartedPage();
 

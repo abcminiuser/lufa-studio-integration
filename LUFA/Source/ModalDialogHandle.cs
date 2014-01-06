@@ -7,18 +7,18 @@ namespace FourWalledCubicle.LUFA
 {
     class ModalDialogHandle : IWin32Window
     {
-        private readonly DTE mDTE;
+        private readonly DTE _DTE;
 
         public ModalDialogHandle()
         {
-            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
         }
 
         public IntPtr Handle
         {
             get
             {
-                return (IntPtr)mDTE.MainWindow.HWnd;
+                return (IntPtr)_DTE.MainWindow.HWnd;
             }
         }
     }

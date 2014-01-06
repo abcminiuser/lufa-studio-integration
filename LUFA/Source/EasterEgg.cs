@@ -7,51 +7,51 @@ namespace FourWalledCubicle.LUFA
 {
     class EasterEgg
     {
-        private readonly DTE mDTE;
-        private readonly OptionsPage mSettings;
-        private readonly BuildEvents mBuildEvents;
+        private readonly DTE _DTE;
+        private readonly OptionsPage _settings;
+        private readonly BuildEvents _buildEvents;
 
-        private readonly SoundPlayer mPlayer;
-        private readonly Random mRandom;
+        private readonly SoundPlayer _player;
+        private readonly Random _random;
 
-        private DateTime mPreviousPlayTime = DateTime.MinValue;
+        private DateTime _previousPlayTime = DateTime.MinValue;
 
         public EasterEgg(OptionsPage settings)
         {
-            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
-            mSettings = settings;
+            _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            _settings = settings;
 
-            mBuildEvents = mDTE.Events.BuildEvents;
-            mBuildEvents.OnBuildBegin += new _dispBuildEvents_OnBuildBeginEventHandler(mBuildEvents_OnBuildBegin);
-            mBuildEvents.OnBuildDone += new _dispBuildEvents_OnBuildDoneEventHandler(mBuildEvents_OnBuildDone);
+            _buildEvents = _DTE.Events.BuildEvents;
+            _buildEvents.OnBuildBegin += new _dispBuildEvents_OnBuildBeginEventHandler(mBuildEvents_OnBuildBegin);
+            _buildEvents.OnBuildDone += new _dispBuildEvents_OnBuildDoneEventHandler(mBuildEvents_OnBuildDone);
 
-            mRandom = new Random();
-            mPlayer = new SoundPlayer(Resources.ys);
-            mPlayer.LoadAsync();
+            _random = new Random();
+            _player = new SoundPlayer(Resources.ys);
+            _player.LoadAsync();
         }
 
         void mBuildEvents_OnBuildDone(vsBuildScope Scope, vsBuildAction Action)
         {
-            if (mPlayer == null)
+            if (_player == null)
                 return;
 
-            mPlayer.Stop();
+            _player.Stop();
         }
 
         void mBuildEvents_OnBuildBegin(vsBuildScope Scope, vsBuildAction Action)
         {
-            if (mPlayer == null)
+            if (_player == null)
                 return;
 
-            if ((mSettings.EasterEgg == true) && /* Must be enabled */
+            if ((_settings.EasterEgg == true) && /* Must be enabled */
                 (DateTime.Now.Hour >= 20) && /* Must be after 8PM */
-                (mRandom.Next(50) == 1) && /* 2% chance of occurance */
-                ((DateTime.Now - mPreviousPlayTime).TotalMinutes > 45)) /* Must be at least 45 minutes since last occurance */
+                (_random.Next(50) == 1) && /* 2% chance of occurance */
+                ((DateTime.Now - _previousPlayTime).TotalMinutes > 45)) /* Must be at least 45 minutes since last occurance */
             {
-                mPreviousPlayTime = DateTime.Now;
+                _previousPlayTime = DateTime.Now;
 
-                mPlayer.PlayLooping();
-                mDTE.StatusBar.Text = "Yackety Sax time, brought to you by LUFA! Turn off via Tools->Options menu, Extensions->LUFA Library->Easter Egg.";
+                _player.PlayLooping();
+                _DTE.StatusBar.Text = "Yackety Sax time, brought to you by LUFA! Turn off via Tools->Options menu, Extensions->LUFA Library->Easter Egg.";
             }
         }    
     }

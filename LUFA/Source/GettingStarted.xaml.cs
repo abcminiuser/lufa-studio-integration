@@ -9,13 +9,13 @@ namespace FourWalledCubicle.LUFA.Pages
 {
     public partial class GettingStarted : UserControl
     {
-        private readonly DTE mDTE;
-        private readonly VSHelp.Help mHelpService;
+        private readonly DTE _DTE;
+        private readonly VSHelp.Help _helpService;
 
         public GettingStarted()
         {
-            mDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
-            mHelpService = Package.GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
+            _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+            _helpService = Package.GetGlobalService(typeof(VSHelp.SVsHelp)) as VSHelp.Help;
 
             InitializeComponent();
 
@@ -41,29 +41,29 @@ namespace FourWalledCubicle.LUFA.Pages
         {
             try
             {
-                mDTE.ExecuteCommand("File.ExampleProject", "");
+                _DTE.ExecuteCommand("File.ExampleProject", "");
             }
             catch { }
         }
 
         private void AuthorBlog_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mDTE.ItemOperations.Navigate(@"http://www.fourwalledcubicle.com/blog");
+            _DTE.ItemOperations.Navigate(@"http://www.fourwalledcubicle.com/blog");
         }
 
         private void AuthorWebsite_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mDTE.ItemOperations.Navigate(@"http://www.fourwalledcubicle.com");
+            _DTE.ItemOperations.Navigate(@"http://www.fourwalledcubicle.com");
         }
 
         private void LUFAMailingList_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mDTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/support");
+            _DTE.ItemOperations.Navigate(@"http://www.lufa-lib.org/support");
         }
 
         private void OpenIntHelp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
+            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
         }
 
         private void ReinstallIntHelp_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -76,32 +76,32 @@ namespace FourWalledCubicle.LUFA.Pages
             ExtensionInformation.LUFAReleaseTypes releaseType;
             string versionString = ExtensionInformation.GetVersion(out releaseType);
 
-            mDTE.ItemOperations.Navigate(string.Format(@"http://www.lufa-lib.org/documentation/{0}/html", versionString));
+            _DTE.ItemOperations.Navigate(string.Format(@"http://www.lufa-lib.org/documentation/{0}/html", versionString));
         }
 
         private void ChangeLog_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.ChangeLog");
+            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.ChangeLog");
         }
 
         private void MigrationNotes_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Migration");
+            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Migration");
         }
 
         private void KnownIssues_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.KnownIssues");
+            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.KnownIssues");
         }
 
         private void License_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.LicenseInfo");
+            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.LicenseInfo");
         }
 
         private void Donate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            mHelpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Donating");
+            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Donating");
         }
 
         private void DockPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)

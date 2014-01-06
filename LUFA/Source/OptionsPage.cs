@@ -6,14 +6,14 @@ namespace FourWalledCubicle.LUFA
     [System.ComponentModel.DesignerCategory("")]
     public class OptionsPage : DialogPage
     {
-        private bool mEasterEgg = true;
+        private bool _easterEgg = true;
 
         [DisplayName("Enable Easter Egg")]
         [Description("Make the after-work world a slightly more whimsical place.")]
         public bool EasterEgg
         {
-            get { return mEasterEgg; }
-            set { mEasterEgg = value; }
+            get { return _easterEgg; }
+            set { _easterEgg = value; }
         }
     }
 }

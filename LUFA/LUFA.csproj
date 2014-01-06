@@ -142,9 +142,7 @@
     <Compile Include="Guids.cs" />
     <Compile Include="Source\HelpInstallManager.cs" />
     <Compile Include="Source\HelpToolbarEntries.cs" />
-    <Compile Include="Source\OptionsPage.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Source\OptionsPage.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
