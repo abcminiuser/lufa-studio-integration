@@ -1,109 +1,143 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
+using EnvDTE;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.Win32;
-using EnvDTE;
 
 namespace FourWalledCubicle.LUFA
 {
-    abstract class ExtensionInformation
+    public abstract class ExtensionInformation
     {
         public abstract class Shell
         {
-            public static string GetName()
+            public static string Name
             {
-                string productName = @"AtmelStudio";
-
-                try
+                get
                 {
-                    DTE packageDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
-                    RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
-                    productName = (string)registryKey.GetValue("AppName");
-                }
-                catch { }
+                    string productName = @"AtmelStudio";
 
-                return productName;
+                    try
+                    {
+                        DTE packageDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+                        RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
+                        productName = (string)registryKey.GetValue("AppName");
+                    }
+                    catch { }
+
+                    return productName;
+                }
             }
 
-            public static string GetVersion()
+            public static string Version
             {
-                string productName = @"6.1";
-
-                try
+                get
                 {
-                    DTE packageDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
-                    RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
-                    productName = (string)registryKey.GetValue("ProductVersion");
-                }
-                catch { }
+                    string productName = @"6.1";
 
-                return productName;
+                    try
+                    {
+                        DTE packageDTE = Package.GetGlobalService(typeof(DTE)) as DTE;
+                        RegistryKey registryKey = Registry.CurrentUser.OpenSubKey(packageDTE.RegistryRoot + "_Config");
+                        productName = (string)registryKey.GetValue("ProductVersion");
+                    }
+                    catch { }
+
+                    return productName;
+                }
             }
         }
 
-        public enum LUFAReleaseTypes
+        public abstract class LUFA
         {
-            Unknown,
-            Normal,
-            Test,
-        };
-
-        public static string GetVersion(out LUFAReleaseTypes versionType)
-        {
-            versionType = LUFAReleaseTypes.Unknown;
-
-            IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
-            if (extensionManagerService == null)
-                return null;
-
-            IInstalledExtension lufaExt = null;
-            if (extensionManagerService.TryGetInstalledExtension(GuidList.guidLUFAVSIXManifestString, out lufaExt) == false)
-                return null;
-
-            string[] lufaVersionSegments = lufaExt.Header.Version.ToString().Split('.');
-
-            if (lufaVersionSegments.First().Equals("0"))
+            public enum ReleaseTypes
             {
-                versionType = LUFAReleaseTypes.Test;
-                return lufaVersionSegments[1];
-            }
-            else
+                Unknown,
+                Normal,
+                Test,
+            };
+
+            public static bool Updated
             {
-                versionType = LUFAReleaseTypes.Normal;
-                return lufaVersionSegments.Last();
-            }
-        }
-
-        public static bool IsUpdated()
-        {
-            bool isUpdated = false;
-
-            const string lufaInstalledVersionKeyName = @"Software\LUFA\AtmelStudioExtension\InstalledVersion";
-
-            LUFAReleaseTypes currentReleaseType;
-            string currentVersion = GetVersion(out currentReleaseType);
-
-            try
-            {
-                RegistryKey versionNode = Registry.CurrentUser.OpenSubKey(lufaInstalledVersionKeyName, true);
-
-                if (versionNode != null)
+                get
                 {
-                    isUpdated = (versionNode.GetValue("Version").ToString().Equals(currentVersion) == false) ||
-                                (versionNode.GetValue("Type").ToString().Equals(currentReleaseType.ToString()) == false);
+                    bool isUpdated = false;
+
+                    const string lufaInstalledVersionKeyName = @"Software\LUFA\AtmelStudioExtension\InstalledVersion";
+
+                    ReleaseTypes currentReleaseType;
+                    string currentVersion = GetVersion(out currentReleaseType);
+
+                    try
+                    {
+                        RegistryKey versionNode = Registry.CurrentUser.OpenSubKey(lufaInstalledVersionKeyName, true);
+
+                        if (versionNode != null)
+                        {
+                            isUpdated = (versionNode.GetValue("Version").ToString().Equals(currentVersion) == false) ||
+                                        (versionNode.GetValue("Type").ToString().Equals(currentReleaseType.ToString()) == false);
+                        }
+                        else
+                        {
+                            versionNode = Registry.CurrentUser.CreateSubKey(lufaInstalledVersionKeyName);
+                        }
+
+                        versionNode.SetValue("Version", currentVersion);
+                        versionNode.SetValue("Type", currentReleaseType.ToString());
+                    }
+                    catch { }
+
+                    return isUpdated;
+                }
+            }
+
+            public static string GetVersion(out ReleaseTypes versionType)
+            {
+                versionType = ReleaseTypes.Unknown;
+
+                IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
+                if (extensionManagerService == null)
+                    return null;
+
+                IInstalledExtension lufaExt = null;
+                if (extensionManagerService.TryGetInstalledExtension(GuidList.guidLUFAVSIXManifestString, out lufaExt) == false)
+                    return null;
+
+                string[] lufaVersionSegments = lufaExt.Header.Version.ToString().Split('.');
+
+                if (lufaVersionSegments.First().Equals("0"))
+                {
+                    versionType = ReleaseTypes.Test;
+                    return lufaVersionSegments[1];
                 }
                 else
                 {
-                    versionNode = Registry.CurrentUser.CreateSubKey(lufaInstalledVersionKeyName);
+                    versionType = ReleaseTypes.Normal;
+                    return lufaVersionSegments.Last();
                 }
-
-                versionNode.SetValue("Version", currentVersion);
-                versionNode.SetValue("Type", currentReleaseType.ToString());
             }
-            catch { }
+        }
 
-            return isUpdated;
+        public abstract class ASF
+        {
+            public static readonly Version Mininimum = new Version(3, 14);
+
+            public static Version Version
+            {
+                get
+                {
+                    IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
+                    if (extensionManagerService == null)
+                        return null;
+
+                    IInstalledExtension asfExt = null;
+                    if (extensionManagerService.TryGetInstalledExtension(GuidList.guidASFVSIXManifestString, out asfExt) == false)
+                        return null;
+
+                    return asfExt.Header.Version;
+                }
+            }
         }
 
         public static string GetContentLocation(string contentName)

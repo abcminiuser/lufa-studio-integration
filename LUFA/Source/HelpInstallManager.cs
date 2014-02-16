@@ -31,8 +31,8 @@ namespace FourWalledCubicle.LUFA
 
         private static void AddRemoveHelp(HelpAction action)
         {
-            string shellName = ExtensionInformation.Shell.GetName();
-            string shellVersion = ExtensionInformation.Shell.GetVersion();
+            string shellName = ExtensionInformation.Shell.Name;
+            string shellVersion = ExtensionInformation.Shell.Version;
             string helpPackagePath = ExtensionInformation.GetContentLocation("MSHelp");
 
             if (helpPackagePath == null)

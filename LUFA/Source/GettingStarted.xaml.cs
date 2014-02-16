@@ -20,8 +20,8 @@ namespace FourWalledCubicle.LUFA.Pages
 
             InitializeComponent();
 
-            ExtensionInformation.LUFAReleaseTypes releaseType;
-            string versionString = ExtensionInformation.GetVersion(out releaseType);
+            ExtensionInformation.LUFA.ReleaseTypes releaseType;
+            string versionString = ExtensionInformation.LUFA.GetVersion(out releaseType);
 
             if (versionString != null)
             {
@@ -30,7 +30,7 @@ namespace FourWalledCubicle.LUFA.Pages
                 versionTextRun.FontSize = 12;
 
                 versionTextRun.Text = String.Format("({0} {1})",
-                    (releaseType == ExtensionInformation.LUFAReleaseTypes.Test) ? "Test Release" : "Version",
+                    (releaseType == ExtensionInformation.LUFA.ReleaseTypes.Test) ? "Test Release" : "Version",
                     versionString);
 
                 FooterText.Inlines.InsertAfter(FooterText.Inlines.LastInline, new LineBreak());
@@ -74,8 +74,8 @@ namespace FourWalledCubicle.LUFA.Pages
 
         private void OnlineHelp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ExtensionInformation.LUFAReleaseTypes releaseType;
-            string versionString = ExtensionInformation.GetVersion(out releaseType);
+            ExtensionInformation.LUFA.ReleaseTypes releaseType;
+            string versionString = ExtensionInformation.LUFA.GetVersion(out releaseType);
 
             _DTE.ItemOperations.Navigate(string.Format(@"http://www.lufa-lib.org/documentation/{0}/html", versionString));
         }
