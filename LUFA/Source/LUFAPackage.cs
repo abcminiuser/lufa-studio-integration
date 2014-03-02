@@ -97,7 +97,7 @@ namespace FourWalledCubicle.LUFA
                         asfVersion.Major, asfVersion.Minor) +
                     Environment.NewLine + Environment.NewLine +
                     @"Using this version of ASF with LUFA may result in issues with project management; please update if possible from the Atmel Gallery.",
-                    DialogBroker.Icon.Warning);
+                    DialogBroker.LUFADialogIcon.Warning);
             }
         }
 

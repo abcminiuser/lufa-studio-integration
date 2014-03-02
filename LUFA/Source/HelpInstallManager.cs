@@ -75,7 +75,7 @@ namespace FourWalledCubicle.LUFA
                 Environment.NewLine + Environment.NewLine +
                 @"If you wish to install the LUFA help package click the ""Add"" link next to the LUFA entry in the Microsoft " +
                 @"Help Manager Wizard that will show when this box is closed, click the ""Update"" button and follow the wizard prompts.",
-                DialogBroker.Icon.Information);
+                DialogBroker.LUFADialogIcon.Information);
         }
 
         public static void DoHelpAction(HelpAction action)
