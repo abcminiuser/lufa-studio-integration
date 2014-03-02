@@ -89,7 +89,7 @@ namespace FourWalledCubicle.LUFA
 
             if ((asfVersion != null) && (asfVersion < recommendedASFVersion))
             {
-                MessageBox.Show(new ModalDialogHandle(),
+                DialogBroker.ShowDialog(
                     @"LUFA relies on the Atmel Software Framework (ASF) extension for its project and module management." +
                     Environment.NewLine + Environment.NewLine +
                     string.Format(@"An installed ASF version of {0}.{1} or later is recommended, however you have version {2}.{3} installed.",
@@ -97,8 +97,7 @@ namespace FourWalledCubicle.LUFA
                         asfVersion.Major, asfVersion.Minor) +
                     Environment.NewLine + Environment.NewLine +
                     @"Using this version of ASF with LUFA may result in issues with project management; please update if possible from the Atmel Gallery.",
-                    @"LUFA Library",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogBroker.Icon.Warning);
             }
         }
 

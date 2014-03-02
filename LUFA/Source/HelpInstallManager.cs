@@ -70,13 +70,12 @@ namespace FourWalledCubicle.LUFA
 
         private static void ShowHelpInstallMessage()
         {
-            MessageBox.Show(new ModalDialogHandle(),
+            DialogBroker.ShowDialog(
                 @"LUFA contains an integrated Atmel Studio help package, however it is unsigned and must be manually installed." +
                 Environment.NewLine + Environment.NewLine +
                 @"If you wish to install the LUFA help package click the ""Add"" link next to the LUFA entry in the Microsoft " +
                 @"Help Manager Wizard that will show when this box is closed, click the ""Update"" button and follow the wizard prompts.",
-                @"LUFA Library",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogBroker.Icon.Information);
         }
 
         public static void DoHelpAction(HelpAction action)

@@ -35,7 +35,7 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <DeployExtension>True</DeployExtension>
     <CopyVsixExtensionFiles>True</CopyVsixExtensionFiles>
-    <CopyVsixExtensionLocation>C:\Users\Dean\AppData\Local\Atmel\AtmelStudio\6.1_Exp\Extensions\Dean Camera\Yak</CopyVsixExtensionLocation>
+    <CopyVsixExtensionLocation>C:\Users\Dean\AppData\Local\Atmel\AtmelStudio\6.1\Extensions\Dean Camera\LUFA</CopyVsixExtensionLocation>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Atmel.Studio.Services.Interfaces, Version=6.1.0.0, Culture=neutral, PublicKeyToken=d264112969646cc9, processorArchitecture=MSIL">
@@ -132,12 +132,12 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\DialogBroker.cs" />
     <Compile Include="Source\ExtensionInformation.cs" />
     <Compile Include="Source\GettingStartedPageToolWindow.cs" />
     <Compile Include="Source\GettingStarted.xaml.cs">
       <DependentUpon>GettingStarted.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\ModalDialogHandle.cs" />
     <Compile Include="Source\EasterEgg.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Source\HelpInstallManager.cs" />
