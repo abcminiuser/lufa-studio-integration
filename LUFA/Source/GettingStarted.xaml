@@ -61,7 +61,16 @@
                                 <BitmapImage UriSource="/LUFA;component/Resources/NewExampleWizard.png"/>
                             </Image.Source>
                         </Image>
-                    </DockPanel>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                            Each demo is available (generally) in two versions, a <Run FontStyle="Italic">Class Driver</Run> version and a <Run FontStyle="Italic">Low Level</Run> version.
+                        </TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                            The <Run FontWeight="Bold">Class Driver</Run> demos are the easier of the two; it uses LUFA's in-built APIs for the demo's USB class (HID, CDC, etc.) to give a simple interface for the demo application. If all you need is the basic class implementation, use this.
+                        </TextBlock>
+                        <TextBlock DockPanel.Dock="Top" Style="{StaticResource SectionText}">
+                            If you need absolute control over the low level class implementation, use the <Run FontWeight="Bold">Low Level</Run> demos instead. These implement the USB classes directly in the demo using LUFA's lowest level APIs.
+                        </TextBlock>
+                    </DockPanel>                    
                 </Expander>
 
                 <Expander DockPanel.Dock="Top" IsExpanded="False" Style="{StaticResource InfoSection}" Header="Configure LUFA">
