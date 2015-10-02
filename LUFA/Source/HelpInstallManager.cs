@@ -15,18 +15,20 @@ namespace FourWalledCubicle.LUFA
             REINSTALL_HELP,
         };
 
+        private static Version HelpVersion = new Version(2, 2);
+
         private static string GetHelpManagerPath()
         {
-            string helpRootFolder = @"C:\Program Files\Microsoft Help Viewer\v1.0\";
+            string helpRootFolder = string.Format(@"C:\Program Files\Microsoft Help Viewer\v{0}.{1}\", HelpVersion.Major, HelpVersion.Minor);
 
             try
             {
-                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(@"Software\\Microsoft\\Help\\v1.0");
+                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(string.Format(@"Software\\Microsoft\\Help\\v{0}.{1}", HelpVersion.Major, HelpVersion.Minor));
                 helpRootFolder = (string)registryKey.GetValue("AppRoot");
             }
             catch { }
 
-            return Path.Combine(helpRootFolder, "HelpLibManager.exe");
+            return Path.Combine(helpRootFolder, "HlpCtntMgr.exe");
         }
 
         private static void AddRemoveHelp(HelpAction action)
@@ -38,15 +40,15 @@ namespace FourWalledCubicle.LUFA
             if (helpPackagePath == null)
                 return;
 
-            string helpManagerArguments = string.Format(@"/product ""{0}"" /version ""{1}"" /locale en-us", shellName, shellVersion);
+            string helpManagerArguments = string.Format(@"/catalogName {0}{1} /locale en-us", shellName, shellVersion.Replace(".",""));
 
             switch (action)
             {
                 case HelpAction.INSTALL_HELP:
-                    helpManagerArguments += string.Format(@" /brandingPackage AtmelHelp3Branding.mshc /sourceMedia ""{0}""", helpPackagePath);
+                    helpManagerArguments += string.Format(@" /operation install /sourceuri ""{0}""", helpPackagePath);
                     break;
                 case HelpAction.UNINSTALL_HELP:
-                    helpManagerArguments += @" /silent /uninstall /vendor ""FourWalledCubicle"" /ProductName ""LUFA"" /mediaBookList ""LUFA Help""";
+                    helpManagerArguments += string.Format(@" /operation uninstall /sourceuri ""{0}""", helpPackagePath);
                     break;
                 default:
                     throw new NotImplementedException();
@@ -71,10 +73,10 @@ namespace FourWalledCubicle.LUFA
         private static void ShowHelpInstallMessage()
         {
             MessageBox.Show(new ModalDialogHandle(),
-                @"LUFA contains an integrated Atmel Studio help package, however it is unsigned and must be manually installed." +
+                @"LUFA contains an integrated Atmel Studio help package, however it is unsigned and installation must be manually confirmed." +
                 Environment.NewLine + Environment.NewLine +
-                @"If you wish to install the LUFA help package click the ""Add"" link next to the LUFA entry in the Microsoft " +
-                @"Help Manager Wizard that will show when this box is closed, click the ""Update"" button and follow the wizard prompts.",
+                @"If you wish to install the LUFA help package now, accept the following security prompts from the Microsoft Help Manager" +
+                @"that will show when this box is closed. If cancelled, this can be manually re-attemped at a later time from the Help menu.",
                 @"LUFA Library",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

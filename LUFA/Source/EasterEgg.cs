@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Shell;
 
 namespace FourWalledCubicle.LUFA
 {
-    class EasterEgg
+    class EasterEgg : IDisposable
     {
         private readonly DTE _DTE;
         private readonly OptionsPage _settings;
@@ -28,6 +28,11 @@ namespace FourWalledCubicle.LUFA
             _random = new Random();
             _player = new SoundPlayer(Resources.ys);
             _player.LoadAsync();
+        }
+
+        public void Dispose()
+        {
+            _player.Dispose();
         }
 
         void mBuildEvents_OnBuildDone(vsBuildScope Scope, vsBuildAction Action)

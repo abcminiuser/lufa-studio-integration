@@ -15,7 +15,7 @@ namespace FourWalledCubicle.LUFA
     [ProvideOptionPageAttribute(typeof(OptionsPage), "Extensions", "LUFA Library", 15600, 1912, true)]
     [ProvideToolWindow(typeof(GettingStartedPageToolWindow), Style = VsDockStyle.MDI, MultiInstances = false)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    public sealed class LUFAPackage : AtmelVsixPackage
+    public sealed class LUFAPackage : Package, IDisposable
     {
         private readonly DTE _DTE;
         private readonly DTEEvents _DTEEvents;
@@ -23,9 +23,7 @@ namespace FourWalledCubicle.LUFA
         private HelpToolbarEntries _helpLinks;
         private EasterEgg _easterEgg;
 
-        private bool _isFirstRun = false;
-
-        public LUFAPackage() : base(GuidList.guidLUFAVSIXManifestString)
+        public LUFAPackage()
         {
             _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
 
@@ -33,23 +31,14 @@ namespace FourWalledCubicle.LUFA
             _DTEEvents.OnStartupComplete += new _dispDTEEvents_OnStartupCompleteEventHandler(DTEEvents_OnStartupComplete);      
         }
 
-        protected override void DoInstallActions()
+        public void Dispose()
         {
-            base.DoInstallActions();
-
-            _isFirstRun = true;
+            _easterEgg.Dispose();
         }
 
-        protected override void DoUninstallActions()
+        protected override void Initialize()
         {
-            base.DoUninstallActions();
-
-            HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.UNINSTALL_HELP);
-        }
-
-        protected override void PackageInitialize()
-        {
-            base.PackageInitialize();
+            base.Initialize();
 
             OptionsPage settings;
 
@@ -70,15 +59,12 @@ namespace FourWalledCubicle.LUFA
 
         private void DTEEvents_OnStartupComplete()
         {
-            if (ExtensionInformation.LUFA.Updated || _isFirstRun)
+            if (ExtensionInformation.LUFA.Updated)
             {
                 WarnIfOldASFVersion();
                 ShowGettingStartedPage();
 
-                if (_isFirstRun)
-                    HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.INSTALL_HELP);
-                else
-                    HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.REINSTALL_HELP);
+                HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.INSTALL_HELP);
             }
         }
 
@@ -87,7 +73,16 @@ namespace FourWalledCubicle.LUFA
             Version asfVersion = ExtensionInformation.ASF.Version;
             Version recommendedASFVersion = ExtensionInformation.ASF.Mininimum;
 
-            if ((asfVersion != null) && (asfVersion < recommendedASFVersion))
+            if (asfVersion == null)
+            {
+                MessageBox.Show(new ModalDialogHandle(),
+                    @"LUFA relies on the Atmel Software Framework (ASF) extension for its project and module management." +
+                    Environment.NewLine + Environment.NewLine +
+                    @"An installed ASF version was not found; please install the ASF extension from the Atmel Gallery.",
+                    @"LUFA Library",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (asfVersion < recommendedASFVersion)
             {
                 MessageBox.Show(new ModalDialogHandle(),
                     @"LUFA relies on the Atmel Software Framework (ASF) extension for its project and module management." +

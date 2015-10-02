@@ -7,10 +7,6 @@
   <!--This header contains the command ids for the menus provided by the shell. -->
   <Extern href="vsshlids.h"/>
 
-  <!--Definition of some VSCT specific constants. In this sample we use it for the IDs inside the guidOfficeIcon group. -->
-  <Extern href="msobtnid.h"/>
-
-
   <Commands package="guidLUFAPkg">
     <Groups>
       <Group guid="guidLUFACmdSet" id="grpLUFAHelp" priority="0x0600">
@@ -97,11 +93,11 @@
 
   <Symbols>
     <GuidSymbol name="guidLUFAPkg" value="{2cfcbce0-84cb-45dc-8315-cad3f82b9467}"/>
-    
+
     <GuidSymbol name="guidImgLUFA" value="{ab9746a4-a16c-4b0d-bc11-1938f5c4b7c5}">
       <IDSymbol name="imgLUFA" value="1"/>
     </GuidSymbol>
-    
+
     <GuidSymbol name="guidImgInternet" value="{0c5fd15d-374c-45c4-8fc9-22ff149225ac}">
       <IDSymbol name="imgInternet" value="1"/>
     </GuidSymbol>
@@ -109,7 +105,7 @@
     <GuidSymbol name="guidImgHelp" value="{a5ce73be-7df8-42d6-a1c2-8ffd96038fbc}">
       <IDSymbol name="imgHelp" value="1"/>
     </GuidSymbol>
-    
+
     <GuidSymbol name="guidLUFACmdSet" value="{1f3dc770-b782-4cfd-b11a-b9065cdc6e70}">
       <IDSymbol name="mnuLUFAHelp" value="0x0100"/>
 
