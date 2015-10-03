@@ -75,8 +75,8 @@ namespace FourWalledCubicle.LUFA
             MessageBox.Show(new ModalDialogHandle(),
                 @"LUFA contains an integrated Atmel Studio help package, however it is unsigned and installation must be manually confirmed." +
                 Environment.NewLine + Environment.NewLine +
-                @"If you wish to install the LUFA help package now, accept the following security prompts from the Microsoft Help Manager" +
-                @"that will show when this box is closed. If cancelled, this can be manually re-attemped at a later time from the Help menu.",
+                @"If you wish to install the LUFA help package now, accept the following security prompts from the Microsoft Help Manager " +
+                @"which will show when this box is closed. If cancelled, this can be manually re-attemped at a later time from the Help menu.",
                 @"LUFA Library",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
