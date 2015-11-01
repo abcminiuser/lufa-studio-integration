@@ -40,7 +40,7 @@ namespace FourWalledCubicle.LUFA
             AddToolbarButtonHandler(
                     CommandIDs.btnShowLocalHelp,
                     (c, a) => {
-                        _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
+                        _helpService.DisplayTopicFromF1Keyword("LUFA.Index");
                     }
                 );
 

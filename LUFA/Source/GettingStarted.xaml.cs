@@ -64,7 +64,7 @@ namespace FourWalledCubicle.LUFA.Pages
 
         private void OpenIntHelp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Index");
+            _helpService.DisplayTopicFromF1Keyword("LUFA.Index");
         }
 
         private void ReinstallIntHelp_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -82,27 +82,27 @@ namespace FourWalledCubicle.LUFA.Pages
 
         private void ChangeLog_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.ChangeLog");
+            _helpService.DisplayTopicFromF1Keyword("LUFA.Page.ChangeLog");
         }
 
         private void MigrationNotes_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Migration");
+            _helpService.DisplayTopicFromF1Keyword("LUFA.Page.Migration");
         }
 
         private void KnownIssues_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.KnownIssues");
+            _helpService.DisplayTopicFromF1Keyword("LUFA.Page.KnownIssues");
         }
 
         private void License_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.LicenseInfo");
+            _helpService.DisplayTopicFromF1Keyword("LUFA.Page.LicenseInfo");
         }
 
         private void Donate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _helpService.DisplayTopicFromF1Keyword("Atmel.Language.C.LUFA.Page.Donating");
+            _helpService.DisplayTopicFromF1Keyword("LUFA.Page.Donating");
         }
 
         private void DockPanel_Loaded(object sender, System.Windows.RoutedEventArgs e)
