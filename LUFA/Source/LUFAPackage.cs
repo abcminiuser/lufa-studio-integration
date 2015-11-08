@@ -11,7 +11,7 @@ namespace FourWalledCubicle.LUFA
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [Guid(GuidList.guidLUFAPkgString)]
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
-    [ProvideOptionPageAttribute(typeof(OptionsPage), "Extensions", "LUFA Library", 15600, 1912, true)]
+    [ProvideOptionPage(typeof(OptionsPage), "Extensions", "LUFA Library", 15600, 1912, true)]
     [ProvideToolWindow(typeof(GettingStartedPageToolWindow), Style = VsDockStyle.MDI, MultiInstances = false)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class LUFAPackage : Package, IDisposable
@@ -27,7 +27,9 @@ namespace FourWalledCubicle.LUFA
             _DTE = Package.GetGlobalService(typeof(DTE)) as DTE;
 
             _DTEEvents = _DTE.Events.DTEEvents;
-            _DTEEvents.OnStartupComplete += new _dispDTEEvents_OnStartupCompleteEventHandler(DTEEvents_OnStartupComplete);      
+            _DTEEvents.OnStartupComplete += new _dispDTEEvents_OnStartupCompleteEventHandler(DTEEvents_OnStartupComplete);
+
+            Logging.Log(Logging.Severity.Information, "LUFA package created");
         }
 
         public void Dispose()
@@ -54,12 +56,19 @@ namespace FourWalledCubicle.LUFA
             
             _helpLinks = new HelpToolbarEntries(menuService, this);
             _easterEgg = new EasterEgg(settings);
+
+            Logging.Log(Logging.Severity.Information, "LUFA package initialized");
         }
 
         private void DTEEvents_OnStartupComplete()
         {
             if (ExtensionInformation.LUFA.Updated)
             {
+                ExtensionInformation.LUFA.ReleaseTypes releaseType;
+                string versionString = ExtensionInformation.LUFA.GetVersion(out releaseType);
+
+                Logging.Log(Logging.Severity.Information, "LUFA updated to version " + versionString + ", showing getting started and installing help");
+
                 WarnIfOldASFVersion();
                 ShowGettingStartedPage();
 
@@ -74,6 +83,8 @@ namespace FourWalledCubicle.LUFA
 
             if (asfVersion == null)
             {
+                Logging.Log(Logging.Severity.Information, "No installed ASF extension found, showing user warning");
+    
                 MessageBox.Show(new ModalDialogHandle(),
                     @"LUFA relies on the Atmel Software Framework (ASF) extension for its project and module management." +
                     Environment.NewLine + Environment.NewLine +
@@ -83,6 +94,8 @@ namespace FourWalledCubicle.LUFA
             }
             else if (asfVersion < recommendedASFVersion)
             {
+                Logging.Log(Logging.Severity.Information, String.Format("ASF extension found, {0} < {1}, showing user warning", asfVersion.ToString(), recommendedASFVersion.ToString()));
+
                 MessageBox.Show(new ModalDialogHandle(),
                     @"LUFA relies on the Atmel Software Framework (ASF) extension for its project and module management." +
                     Environment.NewLine + Environment.NewLine +
@@ -93,6 +106,10 @@ namespace FourWalledCubicle.LUFA
                     @"Using this version of ASF with LUFA may result in issues with project management; please update if possible from the Atmel Gallery.",
                     @"LUFA Library",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Logging.Log(Logging.Severity.Information, String.Format("ASF extension found, {0} >= {1}, no action required", asfVersion.ToString(), recommendedASFVersion.ToString()));
             }
         }
 
@@ -105,9 +122,15 @@ namespace FourWalledCubicle.LUFA
             {
                 IVsWindowFrame gettingStartedWindowFrame = (IVsWindowFrame)gettingStartedWindow.Frame;
 
+                Logging.Log(Logging.Severity.Information, "Showing Getting Started page");
+
                 gettingStartedWindowFrame.Show();
                 gettingStartedWindow.ForceMDIDock();
                 gettingStartedWindow.ResetScrollPosition();
+            }
+            else
+            {
+                Logging.Log(Logging.Severity.Error, "Unable to show Getting Started page");
             }
         }
     }

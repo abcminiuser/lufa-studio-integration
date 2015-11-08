@@ -86,7 +86,10 @@ namespace FourWalledCubicle.LUFA
                         versionNode.SetValue("Version", currentVersion);
                         versionNode.SetValue("Type", currentReleaseType.ToString());
                     }
-                    catch { }
+                    catch (Exception e)
+                    {
+                        Logging.Log(Logging.Severity.Error, "Could not get/set LUFA version in registry: " + e.Message);
+                    }
 
                     return isUpdated;
                 }
@@ -129,11 +132,17 @@ namespace FourWalledCubicle.LUFA
                 {
                     IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
                     if (extensionManagerService == null)
+                    {
+                        Logging.Log(Logging.Severity.Error, "Unable to obtain extension manager service");
                         return null;
+                    }
 
                     IInstalledExtension asfExt = null;
                     if (extensionManagerService.TryGetInstalledExtension(GuidList.guidASFVSIXManifestString, out asfExt) == false)
+                    {
+                        Logging.Log(Logging.Severity.Error, "Unable to obtain ASF extension information");
                         return null;
+                    }
 
                     return asfExt.Header.Version;
                 }
@@ -144,11 +153,17 @@ namespace FourWalledCubicle.LUFA
         {
             IVsExtensionManager extensionManagerService = Package.GetGlobalService(typeof(SVsExtensionManager)) as IVsExtensionManager;
             if (extensionManagerService == null)
+            {
+                Logging.Log(Logging.Severity.Error, "Unable to obtain extension manager service");
                 return null;
+            }
 
             IInstalledExtension lufaExt = null;
             if (extensionManagerService.TryGetInstalledExtension(GuidList.guidLUFAVSIXManifestString, out lufaExt) == false)
+            {
+                Logging.Log(Logging.Severity.Error, "Unable to obtain LUFA extension information");
                 return null;
+            }
 
             string contentPath = null;
 
@@ -157,7 +172,10 @@ namespace FourWalledCubicle.LUFA
                 string contentRelativePath = lufaExt.Content.Where(c => c.ContentTypeName == contentName).First().RelativePath;
                 contentPath = Path.Combine(lufaExt.InstallPath, contentRelativePath);
             }
-            catch { }
+            catch (Exception e)
+            {
+                Logging.Log(Logging.Severity.Error, "Could not get content location: " + e.Message);
+            }
 
             return contentPath;
         }

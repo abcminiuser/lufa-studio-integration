@@ -149,6 +149,7 @@
     <Compile Include="Source\GettingStarted.xaml.cs">
       <DependentUpon>GettingStarted.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Source\Logging.cs" />
     <Compile Include="Source\ModalDialogHandle.cs" />
     <Compile Include="Source\EasterEgg.cs" />
     <Compile Include="Guids.cs" />

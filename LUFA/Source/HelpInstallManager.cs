@@ -38,7 +38,10 @@ namespace FourWalledCubicle.LUFA
             string helpPackagePath = ExtensionInformation.GetContentLocation("MSHelp");
 
             if (helpPackagePath == null)
+            {
+                Logging.Log(Logging.Severity.Error, "Could not get help package content location");
                 return;
+            }
 
             string helpManagerArguments = string.Format(@"/catalogName {0}{1} /locale en-us", shellName, shellVersion.Replace(".",""));
 
@@ -62,12 +65,17 @@ namespace FourWalledCubicle.LUFA
 
             try
             {
+                Logging.Log(Logging.Severity.Information, "Help install action " + action.ToString() + " started with Help manager arguments: " + startInfo.Arguments);
                 Process p = Process.Start(startInfo);
+                p.Exited += (s, e) => { Logging.Log(Logging.Severity.Information, "Help install action " + action.ToString() + " exited with code " + p.ExitCode); };
 
                 if ((p != null) && (action == HelpAction.UNINSTALL_HELP))
                     p.WaitForExit();
             }
-            catch { }
+            catch (Exception e)
+            {
+                Logging.Log(Logging.Severity.Error, "Could not execute help install action " + action.ToString() + ": " + e.Message);
+            }
         }
 
         private static void ShowHelpInstallMessage()
