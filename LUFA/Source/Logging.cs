@@ -13,18 +13,18 @@ namespace FourWalledCubicle.LUFA
 
         private static string LogSourceName = "LUFA Library Extension";
 
-        public static void Log(Severity severity, string message)
+        public static void Log(Severity severity, string message, params object[] formatArgs)
         {
             switch (severity)
             {
                 case Severity.Error:
-                    ActivityLog.LogError(LogSourceName, message);
+                    ActivityLog.LogError(LogSourceName, string.Format(message, formatArgs));
                     break;
                 case Severity.Information:
-                    ActivityLog.LogInformation(LogSourceName, message);
+                    ActivityLog.LogInformation(LogSourceName, string.Format(message, formatArgs));
                     break;
                 case Severity.Warning:
-                    ActivityLog.LogWarning(LogSourceName, message);
+                    ActivityLog.LogWarning(LogSourceName, string.Format(message, formatArgs));
                     break;
             }
         }

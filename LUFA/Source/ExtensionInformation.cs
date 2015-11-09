@@ -88,7 +88,7 @@ namespace FourWalledCubicle.LUFA
                     }
                     catch (Exception e)
                     {
-                        Logging.Log(Logging.Severity.Error, "Could not get/set LUFA version in registry: " + e.Message);
+                        Logging.Log(Logging.Severity.Error, "Could not get/set LUFA version in registry: {0}", e.Message);
                     }
 
                     return isUpdated;
@@ -174,7 +174,7 @@ namespace FourWalledCubicle.LUFA
             }
             catch (Exception e)
             {
-                Logging.Log(Logging.Severity.Error, "Could not get content location: " + e.Message);
+                Logging.Log(Logging.Severity.Error, "Could not get content location: {0}", e.Message);
             }
 
             return contentPath;

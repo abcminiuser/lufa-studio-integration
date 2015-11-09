@@ -65,16 +65,16 @@ namespace FourWalledCubicle.LUFA
 
             try
             {
-                Logging.Log(Logging.Severity.Information, "Help install action " + action.ToString() + " started with Help manager arguments: " + startInfo.Arguments);
+                Logging.Log(Logging.Severity.Information, "Help install action {0} started with Help manager arguments: {1}", action, startInfo.Arguments);
                 Process p = Process.Start(startInfo);
-                p.Exited += (s, e) => { Logging.Log(Logging.Severity.Information, "Help install action " + action.ToString() + " exited with code " + p.ExitCode); };
+                p.Exited += (s, e) => { Logging.Log(Logging.Severity.Information, "Help install action {0} exited with code {1}", action, p.ExitCode); };
 
                 if ((p != null) && (action == HelpAction.UNINSTALL_HELP))
                     p.WaitForExit();
             }
             catch (Exception e)
             {
-                Logging.Log(Logging.Severity.Error, "Could not execute help install action " + action.ToString() + ": " + e.Message);
+                Logging.Log(Logging.Severity.Error, "Could not execute help install action {0}: {1}", action, e.Message);
             }
         }
 

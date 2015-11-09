@@ -81,14 +81,14 @@ namespace FourWalledCubicle.LUFA
             CommandID btnCommandID = new CommandID(GuidList.guidLUFACmdSet, commandID);
             if (btnCommandID == null)
             {
-                Logging.Log(Logging.Severity.Error, "Could not create toolbar entry for command " + commandID);
+                Logging.Log(Logging.Severity.Error, "Could not create toolbar entry for command {0}", commandID);
                 return;
             }
 
             MenuCommand btnMenuCommand = new MenuCommand(callback, btnCommandID);
             if (btnMenuCommand == null)
             {
-                Logging.Log(Logging.Severity.Error, "Could not create toolbar menu entry for command " + commandID);
+                Logging.Log(Logging.Severity.Error, "Could not create toolbar menu entry for command {0}", commandID);
                 return;
             }
 

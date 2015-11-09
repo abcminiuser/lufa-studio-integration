@@ -62,17 +62,21 @@ namespace FourWalledCubicle.LUFA
 
         private void DTEEvents_OnStartupComplete()
         {
+            ExtensionInformation.LUFA.ReleaseTypes releaseType;
+            string versionString = ExtensionInformation.LUFA.GetVersion(out releaseType);
+
             if (ExtensionInformation.LUFA.Updated)
             {
-                ExtensionInformation.LUFA.ReleaseTypes releaseType;
-                string versionString = ExtensionInformation.LUFA.GetVersion(out releaseType);
-
-                Logging.Log(Logging.Severity.Information, "LUFA updated to version " + versionString + ", showing getting started and installing help");
+                Logging.Log(Logging.Severity.Information, "LUFA updated to version {0} ({1}), showing getting started and installing help", versionString, releaseType);
 
                 WarnIfOldASFVersion();
                 ShowGettingStartedPage();
 
                 HelpInstallManager.DoHelpAction(HelpInstallManager.HelpAction.INSTALL_HELP);
+            }
+            else
+            {
+                Logging.Log(Logging.Severity.Information, "LUFA not updated, installed version {0} ({1})", versionString, releaseType);
             }
         }
 
@@ -94,7 +98,7 @@ namespace FourWalledCubicle.LUFA
             }
             else if (asfVersion < recommendedASFVersion)
             {
-                Logging.Log(Logging.Severity.Information, String.Format("ASF extension found, {0} < {1}, showing user warning", asfVersion.ToString(), recommendedASFVersion.ToString()));
+                Logging.Log(Logging.Severity.Information, "ASF extension found, {0} < {1}, showing user warning", asfVersion.ToString(), recommendedASFVersion.ToString());
 
                 MessageBox.Show(new ModalDialogHandle(),
                     @"LUFA relies on the Atmel Software Framework (ASF) extension for its project and module management." +
@@ -109,7 +113,7 @@ namespace FourWalledCubicle.LUFA
             }
             else
             {
-                Logging.Log(Logging.Severity.Information, String.Format("ASF extension found, {0} >= {1}, no action required", asfVersion.ToString(), recommendedASFVersion.ToString()));
+                Logging.Log(Logging.Severity.Information, "ASF extension found, {0} >= {1}, no action required", asfVersion.ToString(), recommendedASFVersion.ToString());
             }
         }
 
