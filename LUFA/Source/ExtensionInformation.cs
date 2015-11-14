@@ -81,6 +81,7 @@ namespace FourWalledCubicle.LUFA
                         else
                         {
                             versionNode = Registry.CurrentUser.CreateSubKey(lufaInstalledVersionKeyName);
+                            isUpdated = true;
                         }
 
                         versionNode.SetValue("Version", currentVersion);
